@@ -1,0 +1,34 @@
+# entorno
+.env
+.env.*
+!.env.example
+
+# python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+
+# node
+node_modules/
+dist/
+.vite/
+*.tsbuildinfo
+
+# base de datos y volcados locales
+*.sqlite3
+*.dump
+*.sql.gz
+
+# seed: la nota exportada y los intermedios del parseo
+seed/*.raw.txt
+seed/*.pendientes.json
+
+# editores / SO
+.vscode/
+.idea/
+.DS_Store
+*.swp

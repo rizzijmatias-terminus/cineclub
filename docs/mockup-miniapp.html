@@ -1,0 +1,1372 @@
+<title>Cineclub — maqueta Mini App</title>
+
+<style>
+  /* ─────────────────────────────────────────────
+     PALETA — dark-first (sala a oscuras / petróleo)
+     acento latón: lámpara de proyector, lata de 35mm
+     ───────────────────────────────────────────── */
+  :root {
+    --page-bg:      #0C1A1D;
+    --page-panel:   #132A2E;
+    --page-line:    #23444A;
+    --page-text:    #E4EAE8;
+    --page-muted:   #8AA3A2;
+    --brass:        #C89A4C;
+    --brass-soft:   #7E6231;
+    --shadow:       0 24px 60px -12px rgba(0,0,0,.65);
+  }
+  @media (prefers-color-scheme: light) {
+    :root:not([data-theme="dark"]) {
+      --page-bg:    #EDEFEC;
+      --page-panel: #FFFFFF;
+      --page-line:  #CFD6D2;
+      --page-text:  #16262A;
+      --page-muted: #5C716F;
+      --brass:      #8A6425;
+      --brass-soft: #C0A472;
+      --shadow:     0 20px 48px -16px rgba(22,38,42,.28);
+    }
+  }
+  :root[data-theme="light"] {
+    --page-bg:    #EDEFEC;
+    --page-panel: #FFFFFF;
+    --page-line:  #CFD6D2;
+    --page-text:  #16262A;
+    --page-muted: #5C716F;
+    --brass:      #8A6425;
+    --brass-soft: #C0A472;
+    --shadow:     0 20px 48px -16px rgba(22,38,42,.28);
+  }
+
+  /* Tipos: serif editorial para el "taller", system-ui dentro del teléfono
+     (una Mini App real usa la fuente nativa del sistema). */
+  :root {
+    --serif: Georgia, "Iowan Old Style", "Palatino Linotype", "Times New Roman", serif;
+    --sans:  system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    --mono:  ui-monospace, "SF Mono", "JetBrains Mono", Menlo, Consolas, monospace;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--page-bg);
+    color: var(--page-text);
+    font-family: var(--serif);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .wrap {
+    max-width: 1140px;
+    margin: 0 auto;
+    padding: clamp(24px, 5vw, 56px) clamp(16px, 4vw, 40px) 72px;
+    display: flex;
+    flex-direction: column;
+    gap: clamp(28px, 4vw, 44px);
+  }
+
+  /* ── Encabezado del documento ── */
+  .doc-head { display: flex; flex-direction: column; gap: 10px; }
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+    color: var(--brass);
+  }
+  .doc-head h1 {
+    font-size: clamp(28px, 5vw, 42px);
+    line-height: 1.08;
+    margin: 0;
+    font-weight: 400;
+    letter-spacing: -.015em;
+    text-wrap: balance;
+  }
+  .doc-head p {
+    margin: 0;
+    max-width: 62ch;
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--page-muted);
+  }
+
+  /* ── Layout taller: teléfono + notas ── */
+  .studio {
+    display: grid;
+    grid-template-columns: minmax(0, 380px) minmax(0, 1fr);
+    gap: clamp(28px, 5vw, 60px);
+    align-items: start;
+  }
+  @media (max-width: 880px) {
+    .studio { grid-template-columns: minmax(0, 1fr); justify-items: center; }
+  }
+
+  .device-col { display: flex; flex-direction: column; gap: 14px; width: 100%; max-width: 380px; }
+
+  .device-bar {
+    display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  }
+  .device-bar span {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    letter-spacing: .13em;
+    text-transform: uppercase;
+    color: var(--page-muted);
+  }
+  .theme-btn {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: .06em;
+    color: var(--page-text);
+    background: var(--page-panel);
+    border: 1px solid var(--page-line);
+    border-radius: 999px;
+    padding: 6px 12px;
+    cursor: pointer;
+    transition: border-color .18s, color .18s;
+  }
+  .theme-btn:hover { border-color: var(--brass); color: var(--brass); }
+  .theme-btn:focus-visible { outline: 2px solid var(--brass); outline-offset: 2px; }
+
+  /* ─────────────────────────────────────────────
+     EL TELÉFONO
+     ───────────────────────────────────────────── */
+  .device {
+    border-radius: 30px;
+    padding: 8px;
+    background: linear-gradient(160deg, #2C3B3E, #131E20);
+    box-shadow: var(--shadow);
+  }
+
+  /* Tokens tipo themeParams de Telegram — clases planas, sin media queries,
+     para que no choquen con el tema de la página. */
+  .screen {
+    --tg-bg:        #17212B;
+    --tg-secondary: #0E1621;
+    --tg-header:    #202B36;
+    --tg-text:      #F5F5F5;
+    --tg-hint:      #7D8B99;
+    --tg-link:      #62BCF9;
+    --tg-line:      rgba(255,255,255,.08);
+    --tg-chip:      rgba(255,255,255,.07);
+    --tg-chip-on:   #62BCF9;
+    --tg-chip-on-t: #0E1621;
+
+    position: relative;
+    border-radius: 23px;
+    overflow: hidden;
+    background: var(--tg-bg);
+    color: var(--tg-text);
+    font-family: var(--sans);
+    height: min(768px, 74vh);
+    min-height: 520px;
+    display: flex;
+    flex-direction: column;
+  }
+  .screen.tg-light {
+    --tg-bg:        #FFFFFF;
+    --tg-secondary: #F1F4F7;
+    --tg-header:    #F4F6F8;
+    --tg-text:      #16262A;
+    --tg-hint:      #71818C;
+    --tg-link:      #2A7DBF;
+    --tg-line:      rgba(0,0,0,.09);
+    --tg-chip:      rgba(0,0,0,.05);
+    --tg-chip-on:   #2A7DBF;
+    --tg-chip-on-t: #FFFFFF;
+  }
+
+  /* ── Chrome de Telegram ── */
+  .tg-status {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 8px 18px 2px;
+    font-size: 12px; font-weight: 600;
+    background: var(--tg-header);
+    color: var(--tg-text);
+    font-variant-numeric: tabular-nums;
+  }
+  .tg-status .dots { letter-spacing: .1em; opacity: .8; font-size: 10px; }
+
+  .tg-header {
+    display: flex; align-items: center; gap: 12px;
+    padding: 9px 14px 11px;
+    background: var(--tg-header);
+    border-bottom: 1px solid var(--tg-line);
+  }
+  .tg-back {
+    display: none;
+    align-items: center; gap: 4px;
+    background: none; border: 0; padding: 2px 2px 2px 0;
+    color: var(--tg-link);
+    font-family: var(--sans); font-size: 15px;
+    cursor: pointer;
+  }
+  .screen[data-view="ficha"] .tg-back { display: inline-flex; }
+  .tg-back:focus-visible { outline: 2px solid var(--tg-link); outline-offset: 2px; border-radius: 4px; }
+  .tg-title { display: flex; flex-direction: column; gap: 1px; min-width: 0; flex: 1; }
+  .tg-title b { font-size: 15px; font-weight: 600; }
+  .tg-title small { font-size: 11.5px; color: var(--tg-hint); }
+  .tg-close { color: var(--tg-hint); font-size: 17px; letter-spacing: .12em; }
+
+  /* ── Cuerpo con dos panes ── */
+  .body { position: relative; flex: 1; overflow: hidden; }
+  .pane {
+    position: absolute; inset: 0;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    transition: transform .26s cubic-bezier(.32,.72,0,1), opacity .26s;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .pane { transition: none; }
+  }
+  .pane-ficha { transform: translateX(100%); opacity: 0; pointer-events: none; }
+  .screen[data-view="ficha"] .pane-grid  { transform: translateX(-22%); opacity: 0; pointer-events: none; }
+  .screen[data-view="ficha"] .pane-ficha { transform: translateX(0);    opacity: 1; pointer-events: auto; }
+
+  /* ── Buscador + chips ── */
+  .controls {
+    position: sticky; top: 0; z-index: 3;
+    background: var(--tg-bg);
+    padding: 12px 14px 10px;
+    display: flex; flex-direction: column; gap: 10px;
+    border-bottom: 1px solid var(--tg-line);
+  }
+  .search {
+    display: flex; align-items: center; gap: 8px;
+    background: var(--tg-secondary);
+    border-radius: 10px;
+    padding: 8px 11px;
+  }
+  .search svg { flex: none; color: var(--tg-hint); }
+  .search input {
+    flex: 1; min-width: 0;
+    background: none; border: 0; outline: none;
+    color: var(--tg-text);
+    font-family: var(--sans); font-size: 15px;
+  }
+  .search input::placeholder { color: var(--tg-hint); }
+  .search input:focus-visible { outline: none; }
+  .search:focus-within { box-shadow: 0 0 0 2px var(--tg-link) inset; }
+
+  .chips {
+    display: flex; gap: 7px;
+    overflow-x: auto;
+    scrollbar-width: none;
+    padding-bottom: 2px;
+    margin: 0 -14px; padding-left: 14px; padding-right: 14px;
+  }
+  .chips::-webkit-scrollbar { display: none; }
+  .chip {
+    flex: none;
+    display: inline-flex; align-items: baseline; gap: 5px;
+    background: var(--tg-chip);
+    color: var(--tg-text);
+    border: 0; border-radius: 999px;
+    padding: 6px 12px;
+    font-family: var(--sans); font-size: 13px;
+    white-space: nowrap; cursor: pointer;
+    transition: background .16s, color .16s;
+  }
+  .chip .n {
+    font-family: var(--mono); font-size: 10.5px;
+    opacity: .55; font-variant-numeric: tabular-nums;
+  }
+  .chip[aria-pressed="true"] { background: var(--tg-chip-on); color: var(--tg-chip-on-t); }
+  .chip[aria-pressed="true"] .n { opacity: .75; }
+  .chip:focus-visible { outline: 2px solid var(--tg-link); outline-offset: 2px; }
+
+  /* ── Barra de orden (subordinada a los chips) ── */
+  .sortbar {
+    display: flex; align-items: center; justify-content: space-between; gap: 10px;
+  }
+  .sortbar .count {
+    font-family: var(--mono); font-size: 10.5px;
+    letter-spacing: .06em; color: var(--tg-hint);
+    font-variant-numeric: tabular-nums;
+  }
+  .sort-btn {
+    background: none; border: 0; padding: 2px 0;
+    color: var(--tg-link); cursor: pointer;
+    font-family: var(--sans); font-size: 12.5px;
+  }
+  .sort-btn:focus-visible { outline: 2px solid var(--tg-link); outline-offset: 3px; border-radius: 4px; }
+
+  /* ── Bottom sheet ── */
+  .sheet-wrap { position: absolute; inset: 0; z-index: 10; }
+  .sheet-wrap[hidden] { display: none; }
+  .sheet-bd { position: absolute; inset: 0; background: rgba(0,0,0,.45); border: 0; width: 100%; }
+  .sheet {
+    position: absolute; left: 0; right: 0; bottom: 0;
+    background: var(--tg-bg);
+    border-radius: 14px 14px 0 0;
+    padding: 8px 0 14px;
+    display: flex; flex-direction: column;
+    animation: rise .22s cubic-bezier(.32,.72,0,1);
+  }
+  @keyframes rise { from { transform: translateY(100%); } }
+  @media (prefers-reduced-motion: reduce) { .sheet { animation: none; } }
+  .sheet h4 {
+    margin: 0; padding: 12px 18px 10px;
+    font-family: var(--mono); font-size: 10px;
+    letter-spacing: .14em; text-transform: uppercase;
+    color: var(--tg-hint); font-weight: 400;
+  }
+  .sheet button {
+    display: flex; align-items: center; justify-content: space-between; gap: 12px;
+    background: none; border: 0; width: 100%;
+    padding: 12px 18px;
+    color: var(--tg-text); font-family: var(--sans); font-size: 15px;
+    text-align: left; cursor: pointer;
+  }
+  .sheet button:hover { background: var(--tg-chip); }
+  .sheet button:focus-visible { outline: 2px solid var(--tg-link); outline-offset: -2px; }
+  .sheet button .ck { color: var(--tg-link); opacity: 0; }
+  .sheet button[aria-checked="true"] .ck { opacity: 1; }
+
+  /* ── Calificación: estrellas = promedio del grupo, tu voto en número abajo ── */
+  .rating { display: flex; flex-direction: column; gap: 9px; }
+  .rating .row { display: flex; align-items: center; gap: 11px; }
+
+  .rate {
+    position: relative;
+    font-size: 23px; line-height: 1;
+    white-space: nowrap;
+    letter-spacing: .09em;
+    flex: none;
+  }
+  .rate .lyr { display: block; pointer-events: none; }
+  .rate .lyr.b { color: var(--tg-hint); opacity: .34; }
+  .rate .lyr.f {
+    position: absolute; top: 0; left: 0;
+    overflow: hidden; color: #E0A93C;
+    transition: width .22s cubic-bezier(.32,.72,0,1);
+  }
+  @media (prefers-reduced-motion: reduce) { .rate .lyr.f { transition: none; } }
+  .rate .hit { position: absolute; inset: 0; display: flex; }
+  .rate .hit button {
+    flex: 1; background: none; border: 0; padding: 0;
+    cursor: pointer; color: transparent;
+  }
+  .rate .hit button:focus-visible {
+    outline: 2px solid var(--tg-link); outline-offset: 2px; border-radius: 3px;
+  }
+  .rate:hover .lyr.b { opacity: .5; }
+
+  .rating .num {
+    font-family: var(--mono); font-size: 16px; font-weight: 600;
+    font-variant-numeric: tabular-nums;
+  }
+  .rating .n {
+    font-family: var(--mono); font-size: 10.5px;
+    color: var(--tg-hint); letter-spacing: .04em;
+  }
+
+  /* fila 2 — tu voto */
+  .mine { display: flex; align-items: baseline; gap: 9px; }
+  .mine .lbl {
+    font-family: var(--mono); font-size: 10px;
+    letter-spacing: .14em; text-transform: uppercase; color: var(--tg-hint);
+  }
+  .mine .v {
+    font-family: var(--mono); font-size: 15px; font-weight: 600;
+    color: #E0A93C; font-variant-numeric: tabular-nums;
+  }
+  .mine .v.sin { color: var(--tg-hint); font-weight: 400; }
+  .mine .clear {
+    background: none; border: 0; padding: 0;
+    color: var(--tg-link); font-family: var(--mono); font-size: 10.5px;
+    letter-spacing: .04em; cursor: pointer;
+  }
+  .mine .clear:focus-visible { outline: 2px solid var(--tg-link); outline-offset: 2px; border-radius: 3px; }
+
+  /* ── Capa de estado: esqueleto y error ── */
+  .state {
+    position: absolute; inset: 0; z-index: 5;
+    background: var(--tg-bg);
+    overflow: hidden;
+  }
+  .state[hidden] { display: none; }
+
+  .sk { background: var(--tg-chip); border-radius: 6px; }
+  @keyframes shimmer { 100% { background-position: 200% 0; } }
+  @media (prefers-reduced-motion: no-preference) {
+    .sk {
+      background-image: linear-gradient(90deg,
+        transparent 0%, rgba(255,255,255,.055) 45%, transparent 90%);
+      background-size: 200% 100%;
+      animation: shimmer 1.5s linear infinite;
+    }
+  }
+  .sk-controls {
+    padding: 12px 14px 10px;
+    display: flex; flex-direction: column; gap: 10px;
+    border-bottom: 1px solid var(--tg-line);
+  }
+  .sk-search { height: 36px; border-radius: 10px; }
+  .sk-chips { display: flex; gap: 7px; }
+  .sk-chips .sk { height: 27px; border-radius: 999px; }
+  .sk-sort { height: 13px; width: 45%; }
+  .sk-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px 10px; padding: 14px; }
+  .sk-card { display: flex; flex-direction: column; gap: 6px; }
+  .sk-card .p { aspect-ratio: 2/3; border-radius: 7px; }
+  .sk-card .l { height: 10px; }
+  .sk-card .l2 { height: 9px; width: 55%; }
+
+  .err {
+    height: 100%;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    gap: 14px; padding: 32px 34px; text-align: center;
+  }
+  .err .ico { font-size: 30px; opacity: .5; }
+  .err h4 { margin: 0; font-size: 16px; font-weight: 600; }
+  .err p { margin: 0; font-size: 13.5px; line-height: 1.5; color: var(--tg-hint); }
+  .err button {
+    margin-top: 4px;
+    background: var(--tg-link); color: #fff;
+    border: 0; border-radius: 9px;
+    padding: 10px 22px;
+    font-family: var(--sans); font-size: 14.5px; font-weight: 500;
+    cursor: pointer;
+  }
+  .err button:focus-visible { outline: 2px solid var(--tg-text); outline-offset: 2px; }
+
+  /* el promedio se acomoda cuando contesta el servidor */
+  @keyframes settle { 0%,100% { opacity: 1; } 40% { opacity: .35; } }
+  .rating .num.settled { animation: settle .45s ease; }
+  @media (prefers-reduced-motion: reduce) { .rating .num.settled { animation: none; } }
+
+  /* controles de simulación, fuera del teléfono */
+  .sim { display: flex; gap: 6px; flex-wrap: wrap; justify-content: flex-end; }
+
+  /* pie de la grilla: atajo al bot, que es donde se da de alta */
+  .grid-foot {
+    padding: 6px 20px 28px;
+    display: flex; flex-direction: column; align-items: center; gap: 7px;
+  }
+  .grid-foot[hidden] { display: none; }
+  .add-cta {
+    display: inline-flex; align-items: center; gap: 7px;
+    background: none;
+    border: 1px solid color-mix(in srgb, var(--tg-link) 45%, transparent);
+    border-radius: 999px;
+    padding: 9px 18px;
+    color: var(--tg-link);
+    font-family: var(--sans); font-size: 14px;
+    cursor: pointer;
+    transition: background .16s;
+    max-width: 100%;
+  }
+  .add-cta:hover { background: color-mix(in srgb, var(--tg-link) 10%, transparent); }
+  .add-cta:focus-visible { outline: 2px solid var(--tg-link); outline-offset: 2px; }
+  .add-cta .plus { font-size: 16px; line-height: 1; }
+  .add-cta .q {
+    overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+  }
+  .add-note {
+    font-family: var(--mono); font-size: 10px;
+    letter-spacing: .06em; color: var(--tg-hint);
+  }
+
+  /* aviso de la maqueta: lo que pasaría al tocar el atajo */
+  .toast {
+    position: absolute; left: 14px; right: 14px; bottom: 16px; z-index: 20;
+    background: #12181D; color: #F2F4F5;
+    border: 1px solid rgba(255,255,255,.13);
+    border-radius: 10px;
+    padding: 11px 14px;
+    font-family: var(--sans); font-size: 12.5px; line-height: 1.45;
+    box-shadow: 0 10px 28px rgba(0,0,0,.4);
+    animation: toastIn .2s ease;
+  }
+  .toast b { font-family: var(--mono); font-size: 11.5px; color: #62BCF9; }
+  @keyframes toastIn { from { opacity: 0; transform: translateY(8px); } }
+  @media (prefers-reduced-motion: reduce) { .toast { animation: none; } }
+
+  /* ── Grilla ── */
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px 10px;
+    padding: 14px;
+  }
+  .card {
+    display: flex; flex-direction: column; gap: 6px;
+    background: none; border: 0; padding: 0;
+    text-align: left; cursor: pointer;
+    color: inherit; font-family: var(--sans);
+  }
+  .card:focus-visible { outline: 2px solid var(--tg-link); outline-offset: 3px; border-radius: 8px; }
+  .card .t {
+    font-size: 12px; line-height: 1.25; font-weight: 500;
+    display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .card .meta {
+    display: flex; align-items: baseline; gap: 6px;
+    font-family: var(--mono); font-size: 10.5px;
+    color: var(--tg-hint); font-variant-numeric: tabular-nums;
+  }
+  .card .meta .r { color: #E0A93C; }
+
+  /* Poster procedural: gradientes por hash del título + grano */
+  .poster {
+    position: relative;
+    aspect-ratio: 2 / 3;
+    border-radius: 7px;
+    overflow: hidden;
+    background: var(--tg-secondary);
+    transition: transform .18s;
+  }
+  .card:hover .poster { transform: translateY(-2px); }
+  @media (prefers-reduced-motion: reduce) { .card:hover .poster { transform: none; } }
+  .poster i {
+    position: absolute; inset: 0;
+    background-image:
+      radial-gradient(circle at var(--px) var(--py), hsl(var(--h) 46% 52%) 0%, transparent 58%),
+      linear-gradient(var(--ang), hsl(var(--h2) 32% 30%) 0%, hsl(var(--h) 38% 14%) 100%);
+  }
+  .poster.v-bands i {
+    background-image:
+      repeating-linear-gradient(var(--ang), hsl(var(--h) 44% 48%) 0 6%, transparent 6% 17%),
+      linear-gradient(160deg, hsl(var(--h2) 34% 26%), hsl(var(--h) 40% 12%));
+  }
+  .poster.v-split i {
+    background-image:
+      linear-gradient(var(--ang), hsl(var(--h) 48% 50%) 0 48%, hsl(var(--h2) 30% 16%) 48% 100%);
+  }
+  .poster.v-arcs i {
+    background-image:
+      repeating-radial-gradient(circle at var(--px) var(--py), hsl(var(--h) 46% 50%) 0 4%, transparent 4% 13%),
+      linear-gradient(200deg, hsl(var(--h2) 32% 24%), hsl(var(--h) 42% 11%));
+  }
+  /* grano de película — SVG data URI, sin host externo */
+  .poster::after {
+    content: "";
+    position: absolute; inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='90' height='90'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='90' height='90' filter='url(%23n)' opacity='.5'/%3E%3C/svg%3E");
+    opacity: .16;
+    mix-blend-mode: overlay;
+    pointer-events: none;
+  }
+  .poster b {
+    position: absolute; inset: auto 8px 8px 8px;
+    font-family: var(--serif);
+    font-size: 11px; font-weight: 400; line-height: 1.2;
+    color: rgba(255,255,255,.94);
+    text-shadow: 0 1px 6px rgba(0,0,0,.6);
+  }
+  .poster .tipo {
+    position: absolute; top: 6px; left: 6px;
+    font-family: var(--mono); font-size: 8.5px;
+    letter-spacing: .1em; text-transform: uppercase;
+    background: rgba(0,0,0,.55); color: #fff;
+    padding: 2px 5px; border-radius: 3px;
+  }
+
+  .empty {
+    padding: 48px 24px; text-align: center;
+    color: var(--tg-hint); font-size: 14px;
+  }
+
+  /* ── Ficha ── */
+  .ficha { padding: 18px 16px 32px; display: flex; flex-direction: column; gap: 16px; }
+  .ficha-top { display: flex; gap: 14px; align-items: flex-start; }
+  .ficha-top .poster { width: 118px; flex: none; border-radius: 8px; }
+  .ficha-meta { display: flex; flex-direction: column; gap: 7px; padding-top: 2px; min-width: 0; }
+  .ficha-meta h2 {
+    margin: 0; font-family: var(--serif);
+    font-size: 20px; line-height: 1.15; font-weight: 400;
+    letter-spacing: -.01em; text-wrap: balance;
+  }
+  .ficha-meta .orig {
+    font-size: 12.5px; color: var(--tg-hint); font-style: italic; line-height: 1.3;
+  }
+  .ficha-meta .facts {
+    font-family: var(--mono); font-size: 11px;
+    color: var(--tg-hint); line-height: 1.7;
+    font-variant-numeric: tabular-nums;
+  }
+  .badge {
+    align-self: flex-start;
+    display: inline-flex; align-items: center; gap: 5px;
+    background: var(--tg-chip); border-radius: 999px;
+    padding: 4px 10px; font-size: 12px;
+  }
+  .ficha section { display: flex; flex-direction: column; gap: 6px; }
+  .ficha h3 {
+    margin: 0; font-family: var(--mono);
+    font-size: 10px; letter-spacing: .14em; text-transform: uppercase;
+    color: var(--tg-hint); font-weight: 400;
+  }
+  .ficha p { margin: 0; font-size: 14.5px; line-height: 1.55; }
+  .ficha .ph { color: var(--tg-hint); }
+  .ficha .out {
+    color: var(--tg-link); font-size: 14px; text-decoration: none;
+    border-bottom: 1px solid color-mix(in srgb, var(--tg-link) 40%, transparent);
+    align-self: flex-start;
+  }
+  .ficha .out:focus-visible { outline: 2px solid var(--tg-link); outline-offset: 3px; }
+  .divider { height: 1px; background: var(--tg-line); }
+
+  /* ─────────────────────────────────────────────
+     NOTAS
+     ───────────────────────────────────────────── */
+  .notes { display: flex; flex-direction: column; gap: 26px; max-width: 60ch; }
+  .note-block { display: flex; flex-direction: column; gap: 10px; }
+  .note-block h2 {
+    margin: 0; font-family: var(--mono);
+    font-size: 10.5px; letter-spacing: .15em; text-transform: uppercase;
+    color: var(--brass); font-weight: 400;
+  }
+  .note-block p { margin: 0; font-size: 15px; line-height: 1.62; color: var(--page-text); }
+  .note-block ul { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 9px; }
+  .note-block li {
+    font-size: 14.5px; line-height: 1.55;
+    padding-left: 15px; position: relative; color: var(--page-text);
+  }
+  .note-block li::before {
+    content: ""; position: absolute; left: 0; top: .62em;
+    width: 5px; height: 1px; background: var(--brass-soft);
+  }
+  .note-block li b { font-weight: 600; }
+  .note-block code {
+    font-family: var(--mono); font-size: .86em;
+    background: var(--page-panel); border: 1px solid var(--page-line);
+    padding: 1px 5px; border-radius: 4px;
+  }
+  .q {
+    background: var(--page-panel);
+    border: 1px solid var(--page-line);
+    border-radius: 10px;
+    padding: 16px 18px;
+    display: flex; flex-direction: column; gap: 12px;
+  }
+  .q ol { margin: 0; padding-left: 20px; display: flex; flex-direction: column; gap: 10px; }
+  .q li { font-size: 14.5px; line-height: 1.55; }
+</style>
+
+<div class="wrap">
+
+  <header class="doc-head">
+    <div class="eyebrow">Maqueta v2 · Telegram Mini App</div>
+    <h1>Cineclub — navegar la lista</h1>
+    <p>Dos vistas: grilla con filtro por género, orden y buscador; y ficha por título con calificación
+       del grupo. Las altas no viven acá — las hace el bot con
+       <code style="font-family:var(--mono);font-size:.86em">/add</code>. Datos reales de tu lista:
+       43 películas, 2 series, 2 episodios.</p>
+  </header>
+
+  <div class="studio">
+
+    <div class="device-col">
+      <div class="device-bar">
+        <span>Tema Telegram</span>
+        <button class="theme-btn" id="tgTheme" type="button">☾ oscuro</button>
+      </div>
+      <div class="device-bar">
+        <span>Simular</span>
+        <span class="sim">
+          <button class="theme-btn" id="simReload" type="button">↻ recargar</button>
+          <button class="theme-btn" id="simError"  type="button">⚠ error</button>
+          <button class="theme-btn" id="simNet"    type="button"></button>
+        </span>
+      </div>
+
+      <div class="device">
+        <div class="screen" id="screen" data-view="grid">
+
+          <div class="tg-status">
+            <span>21:40</span>
+            <span class="dots">●●●  ▮</span>
+          </div>
+
+          <div class="tg-header">
+            <button class="tg-back" id="back" type="button">‹ Atrás</button>
+            <div class="tg-title">
+              <b id="hTitle">Cineclub</b>
+              <small id="hSub">mini app</small>
+            </div>
+            <span class="tg-close">⋯ ✕</span>
+          </div>
+
+          <div class="body">
+            <div class="pane pane-grid" id="paneGrid">
+              <div class="controls">
+                <label class="search">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round">
+                    <circle cx="11" cy="11" r="7"/><path d="M20 20l-4.2-4.2"/>
+                  </svg>
+                  <input id="q" type="search" placeholder="Buscar título o director…" autocomplete="off">
+                </label>
+                <div class="chips" id="chips" role="group" aria-label="Filtrar por género"></div>
+                <div class="sortbar">
+                  <span class="count" id="count"></span>
+                  <button class="sort-btn" id="sortBtn" type="button" aria-haspopup="true"></button>
+                </div>
+              </div>
+              <div class="grid" id="grid"></div>
+              <div class="grid-foot" id="gridFoot">
+                <button class="add-cta" type="button" data-add>
+                  <span class="plus">＋</span> Agregar una película
+                </button>
+                <span class="add-note">se abre el chat del bot</span>
+              </div>
+            </div>
+
+            <div class="pane pane-ficha" id="paneFicha"></div>
+
+            <div class="state" id="stateLayer" hidden></div>
+
+            <div class="sheet-wrap" id="sheetWrap" hidden>
+              <button class="sheet-bd" id="sheetBd" type="button" aria-label="Cerrar"></button>
+              <div class="sheet" role="radiogroup" aria-label="Ordenar por">
+                <h4>Ordenar por</h4>
+                <div id="sortOpts"></div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="notes">
+
+      <div class="note-block">
+        <h2>Qué es real</h2>
+        <ul>
+          <li><b>Títulos, años, géneros y conteos</b> salen tal cual de tu nota de Keep. Los buckets conservan tu taxonomía y tus emoji.</li>
+          <li><b>Series y episodios</b> entran como chips propios, porque en tu lista son secciones paralelas a los géneros, no subcategorías.</li>
+          <li><b>El chrome de Telegram</b> (barra, botón Atrás, colores) imita <code>themeParams</code>. El botón de arriba alterna claro y oscuro para ver los dos.</li>
+          <li><b>La red está simulada</b> con los controles de arriba: la carga, el error y la latencia al
+              votar se comportan como lo harían contra tu servidor.</li>
+        </ul>
+      </div>
+
+      <div class="note-block">
+        <h2>Qué es relleno</h2>
+        <ul>
+          <li><b>Los posters.</b> Un artifact no puede cargar imágenes externas, así que están generados por hash del título. En la app real van los de TMDB — cambia mucho el peso visual de la grilla, tenelo en cuenta al juzgarla.</li>
+          <li><b>Sinopsis, quién propuso, fechas y votos.</b> Todo de muestra, derivado del hash del título
+              para que sea estable entre recargas. Tu propio voto sí es real: tocá las estrellas y mirá
+              cómo se mueve el promedio.</li>
+          <li><b>Directores.</b> Los puse de memoria para que la ficha se lea completa. Verificalos contra TMDB en el seed.</li>
+        </ul>
+      </div>
+
+      <div class="note-block">
+        <h2>Sobre el orden</h2>
+        <p>Puse cinco criterios en un sheet, con <b>Últimos agregados</b> por defecto: en una lista
+           compartida que crece, «qué hay de nuevo» es lo que más se pregunta. El orden es independiente
+           del género, así que se mantiene cuando cambiás de chip.</p>
+        <p><b>No agregué una segunda fila de filtros</b> (década, sin ver) y es a propósito. Con 47 títulos,
+           encadenar dos facetas te deja resultados de uno a tres items: el género ya corta de 47 a entre
+           4 y 20. A este tamaño ordenar sirve y filtrar de más molesta. Las décadas empiezan a valer la
+           pena alrededor de los 150 títulos.</p>
+      </div>
+
+      <div class="note-block">
+        <h2>Calificación — cerrado</h2>
+        <p>Estrellas con el promedio del grupo (relleno fraccionario: 4,2 llena cuatro y un quinto) más el
+           número al lado, y tu voto abajo en número. Las estrellas son el control: tocás una y vota.
+           Cada dato aparece una sola vez y tu voto queda verificable.</p>
+        <p><b>Una decisión chica que tomé por vos:</b> las estrellas muestran el promedio <i>siempre</i>,
+           también antes de votar. Tu idea original era dejarlas vacías hasta el primer voto, pero ahora
+           que tu voto vive abajo como número, vaciarlas solo esconde la calificación del grupo justo a
+           quien todavía no votó — que es la mayoría de las visitas, y la información que más sirve para
+           decidir si la ves. El «— / tocá las estrellas» de abajo ya avisa que no votaste. Si lo preferís
+           al revés es una línea.</p>
+        <p>Los votos individuales salieron. Si alguna vez los querés de vuelta, el lugar natural es tocar
+           el número del promedio, sin ocupar espacio fijo.</p>
+      </div>
+
+      <div class="note-block">
+        <h2>Taxonomía — cerrado</h2>
+        <ul>
+          <li><b>Series y episodios en una sola categoría</b> «📺 Series», 4 títulos. El campo
+              <code>tipo</code> sigue distinguiéndolos por dentro: el badge del poster marca «ep» y la ficha
+              dice «episodio». La categoría es de navegación, el tipo es del dato — mezclarlos habría sido
+              perder información para ganar un chip menos.</li>
+          <li><b>🎭 repetido</b> en Drama y Comedia, como pediste. Queda anotado como deuda visual, no como
+              error: cuando moleste, cambiar el de Comedia es editar una fila.</li>
+          <li><b>Grilla en 3 columnas</b>, confirmado.</li>
+        </ul>
+      </div>
+
+      <div class="note-block">
+        <h2>El alta vive en el bot — cerrado</h2>
+        <p>La base de datos habilitaba dar de alta desde la app, pero el motivo del bot nunca fue técnico:
+           agregar por el chat son dos toques sin salir de la conversación, y <b>el grupo ve el aviso</b>.
+           Por la app serían cinco toques y nadie se entera. Además el alta es de bajísimo tráfico — un
+           par de películas por semana contra una lista que se navega todos los días.</p>
+        <p>Lo que sí cambió es el pie de la grilla: era una instrucción («andá al grupo y escribí /add») y
+           ahora es un <b>botón que abre el bot de un toque</b>. En la app real llama a
+           <code>openTelegramLink</code> con <code>t.me/cineclubbot?start=add</code> y después
+           <code>close()</code>. Probalo, muestra a dónde iría.</p>
+        <p>Con el buscador sin resultados el atajo se vuelve más prominente y <b>arrastra lo que buscaste</b>:
+           el payload del deep link lleva el término, así que el bot arranca buscando eso mismo. Buscá algo
+           que no esté — «Stalker», por ejemplo — y mirá el botón.</p>
+      </div>
+
+      <div class="note-block">
+        <h2>Lo que cambia al ir a base de datos</h2>
+        <p>Con servidor propio, la planilla deja de ser el almacenamiento y queda solo como <b>origen del
+           seed</b>: se importa una vez y se archiva. De ahí en adelante:</p>
+        <ul>
+          <li><b>Identidad sin passwords.</b> La Mini App manda el <code>initData</code> de Telegram, el
+              backend verifica el HMAC con el token del bot y saca el user id. Nadie crea cuenta nunca, y
+              es la misma identidad con la que el bot ve quién escribió <code>/add</code>.</li>
+          <li><b>Un voto por persona por título</b> se vuelve una restricción de unicidad de verdad
+              (<code>unique(pelicula, usuario)</code>), que en una planilla no existía.</li>
+          <li><b>Bot y API en el mismo servicio.</b> Comparten modelo de datos y el token; separarlos es
+              trabajo sin beneficio a esta escala.</li>
+          <li><b><code>estado</code> pasa a derivarse</b> de los votos: si alguien calificó, la vio. Un campo
+              menos que mantener a mano.</li>
+        </ul>
+      </div>
+
+      <div class="note-block">
+        <h2>Carga y error — cerrado</h2>
+        <p>Esqueleto, no spinner: la misma grilla de 3 columnas en gris, con el buscador y los chips
+           también en gris. No hay salto de layout cuando llegan los datos y se percibe más rápido aunque
+           tarde lo mismo. Tocá <b>↻ recargar</b> arriba para verlo.</p>
+        <p>El error es pantalla completa con motivo y un botón de reintentar — <b>⚠ error</b> lo dispara.
+           Lo importante es que nunca quede una pantalla en blanco: sin este estado, una caída del servidor
+           se lee como que la app está rota.</p>
+      </div>
+
+      <div class="note-block">
+        <h2>Voto optimista — cerrado</h2>
+        <p>La estrella se pinta al instante y el pedido va en segundo plano. Cambiá <b>red</b> a
+           <i>lenta</i> y votá: la estrella responde igual de rápido, y un momento después el promedio se
+           acomoda con lo que contesta el servidor.</p>
+        <ul>
+          <li><b>Si el envío falla, no pasa nada visible.</b> Puse un reintento silencioso antes de
+              rendirse, que tapa el bache de red típico sin que el usuario se entere. Poné la red en
+              <i>caída</i> y votá: la estrella queda marcada y no aparece ningún cartel.
+              <b>La contra, para que la tengas presente:</b> si los dos intentos fallan, el voto se pierde
+              y recién te enterás la próxima vez que abrás la app y no esté. A esta escala es aceptable;
+              si molesta, la solución barata es guardarlo local y reintentar al abrir.</li>
+          <li><b>El servidor pisa el promedio.</b> El número que ves al votar es una estimación local;
+              cuando contesta el servidor se reemplaza por el suyo. En la maqueta el servidor a veces
+              simula un voto ajeno que entró en el medio, para que veas el promedio moverse — ese parpadeo
+              del número es la reconciliación.</li>
+          <li><b>Gana el último voto.</b> Si tocás 4 y enseguida 5, salen dos pedidos; las respuestas
+              viejas se descartan por número de secuencia, así que no importa cuál conteste primero.</li>
+        </ul>
+      </div>
+
+      <div class="note-block">
+        <h2>Título recién agregado — cerrado</h2>
+        <p>Sin marca. El orden por defecto ya es «últimos agregados», así que lo nuevo aparece arriba de
+           todo sin ningún elemento extra. Si con el uso resulta que el grupo no vuelve a abrir la app,
+           ahí se evalúa un «nuevo desde tu última visita» — que es la versión útil, pero obliga a guardar
+           la última visita de cada usuario.</p>
+      </div>
+
+      <div class="q">
+        <h2 style="font-family:var(--mono);font-size:10.5px;letter-spacing:.15em;text-transform:uppercase;color:var(--brass);font-weight:400;margin:0">La UI está cerrada — sigue</h2>
+        <ol>
+          <li><b>Modelo de datos</b> en Postgres: tablas de títulos, géneros, usuarios y votos, con
+              <code>unique(titulo, usuario)</code> y <code>estado</code> derivado de los votos.</li>
+          <li><b>Seed</b> de los 47 títulos: parsear la nota de Keep, resolver contra TMDB y revisar a mano
+              el 10-15% que no resuelve solo.</li>
+          <li><b>El bot</b>: <code>/add</code> con desambiguación, el manejo del deep link
+              <code>?start=add__&lt;término&gt;</code>, y el link a la Mini App anclado en el grupo.</li>
+        </ol>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script>
+  const GEN = [
+    { slug:"drama",    emoji:"🎭", label:"Drama" },
+    { slug:"suspenso", emoji:"🔎", label:"Suspenso" },
+    { slug:"terror",   emoji:"👁", label:"Terror" },
+    { slug:"scifi",    emoji:"🤖", label:"Ciencia ficción" },
+    { slug:"aventura", emoji:"⚔",  label:"Aventura" },
+    { slug:"comedia",  emoji:"🎭", label:"Comedia" },
+    // series y episodios comparten categoría; `tipo` los sigue distinguiendo
+    { slug:"serie",    emoji:"📺", label:"Series" }
+  ];
+
+  // t=título, o=original, a=año, g=género, d=director, tp=tipo
+  const M = [
+    ["Paris, Texas",1984,"drama","Wim Wenders"],
+    ["Godland",2022,"drama","Hlynur Pálmason","Volaða land"],
+    ["Fondo de aire rojo",2024,"drama",""],
+    ["Where Is the Friend's House?",1987,"drama","Abbas Kiarostami","خانه دوست کجاست؟"],
+    ["The Time That Remains",2009,"drama","Elia Suleiman"],
+    ["La batalla de Argel",1966,"drama","Gillo Pontecorvo","La battaglia di Algeri"],
+    ["Felicidades",2000,"drama","Lucho Bender"],
+    ["Tengo miedo torero",2020,"drama","Rodrigo Sepúlveda"],
+    ["Dogville",2003,"drama","Lars von Trier"],
+    ["Dancer in the Dark",2000,"drama","Lars von Trier"],
+    ["La classe operaia va in paradiso",1971,"drama","Elio Petri"],
+    ["Novecento",1976,"drama","Bernardo Bertolucci"],
+    ["Wadjda",2012,"drama","Haifaa al-Mansour","وجدة"],
+    ["Las tortugas también vuelan",2004,"drama","Bahman Ghobadi","لاکپشت‌ها هم پرواز می‌کنند"],
+    ["Rocco e i suoi fratelli",1960,"drama","Luchino Visconti"],
+    ["La terra trema",1948,"drama","Luchino Visconti"],
+    ["I, Daniel Blake",2016,"drama","Ken Loach"],
+    ["Mundo grúa",1999,"drama","Pablo Trapero"],
+    ["Los lunes al sol",2001,"drama","Fernando León de Aranoa"],
+    ["El Ángel",2018,"drama","Luis Ortega"],
+
+    ["Memories of Murder",2003,"suspenso","Bong Joon-ho","살인의 추억"],
+    ["8mm",1999,"suspenso","Joel Schumacher"],
+    ["Tesis",1996,"suspenso","Alejandro Amenábar"],
+    ["Killing Them Softly",2012,"suspenso","Andrew Dominik"],
+
+    ["Frankenstein",2025,"terror","Guillermo del Toro"],
+    ["Funny Games",1997,"terror","Michael Haneke"],
+    ["Dellamorte Dellamore",1994,"terror","Michele Soavi"],
+    ["Pontypool",2008,"terror","Bruce McDonald"],
+
+    ["Brazil",1985,"scifi","Terry Gilliam"],
+    ["The Man from Earth",2007,"scifi","Richard Schenkman"],
+    ["Videodrome",1983,"scifi","David Cronenberg"],
+    ["Moebius",1996,"scifi","Gustavo Mosquera"],
+
+    ["Fitzcarraldo",1982,"aventura","Werner Herzog"],
+    ["Dersu Uzala",1975,"aventura","Akira Kurosawa","デルス・ウザーラ"],
+    ["Héroe",2002,"aventura","Zhang Yimou","英雄"],
+    ["One Battle After Another",2025,"aventura","Paul Thomas Anderson"],
+
+    ["Satyricon",1969,"comedia","Federico Fellini"],
+    ["Robot Carnival",1987,"comedia","Katsuhiro Otomo y otros","ロボットカーニバル"],
+    ["The Hudsucker Proxy",1994,"comedia","Joel y Ethan Coen"],
+    ["La Fiaca",1969,"comedia","Fernando Ayala"],
+    ["The Last Supper",1995,"comedia","Stacy Title"],
+    ["The Boat That Rocked",2009,"comedia","Richard Curtis"],
+    ["Las trillizas de Belleville",2003,"comedia","Sylvain Chomet","Les triplettes de Belleville"]
+  ].map(r => ({ t:r[0], a:r[1], g:r[2], d:r[3], o:r[4]||"", tp:"pelicula" }));
+
+  M.push(
+    { t:"Unsere Mütter, unsere Väter", a:2013, g:"serie", d:"Philipp Kadelbach", o:"", tp:"serie" },
+    { t:"La Casa de los Espíritus",    a:2026, g:"serie", d:"",                  o:"", tp:"serie" },
+    { t:"Los Simpson — T03E01",        a:1991, g:"serie", d:"", o:"Stark Raving Dad",     tp:"episodio" },
+    { t:"Rick y Morty — T03E07",       a:2017, g:"serie", d:"", o:"The Ricklantis Mixup", tp:"episodio" }
+  );
+
+  const SINOPSIS = "Sinopsis de muestra. En la app real la trae TMDB en castellano cuando existe, " +
+    "y cae al inglés si no. Dos o tres oraciones alcanzan: la ficha es para decidir si la vemos, " +
+    "no para leer el argumento completo.";
+  const HANDLES = ["@lucia","@martin","@sofia","@diego"];
+
+  /* ── Poster procedural determinístico ── */
+  const VAR = ["v-glow","v-bands","v-split","v-arcs"];
+  function hash(s) {
+    let h = 2166136261;
+    for (let i = 0; i < s.length; i++) { h ^= s.charCodeAt(i); h = Math.imul(h, 16777619); }
+    return Math.abs(h);
+  }
+
+  /* Datos de muestra derivados del hash del título, para que el orden y las
+     calificaciones sean estables entre recargas. En la app real: columna
+     `agregado` de la planilla y tab `votos`. */
+  const HOY = new Date("2026-08-11");
+  M.forEach((m, i) => {
+    const h = hash(m.t);
+    m.id = i;
+    m.by = HANDLES[h % HANDLES.length];
+    m.agregado = new Date(HOY - (3 + (h % 148)) * 864e5);
+    // ~65% tienen al menos un voto; entre 1 y 4 votantes
+    m.votos = [];
+    if (h % 100 < 65) {
+      const cuantos = 1 + (h >> 4) % 4;
+      for (let k = 0; k < cuantos; k++) {
+        m.votos.push({ by: HANDLES[(h + k * 7) % HANDLES.length], v: 2 + ((h >> (k + 2)) % 4) });
+      }
+      // sin votantes repetidos
+      m.votos = m.votos.filter((v, k, arr) => arr.findIndex(x => x.by === v.by) === k);
+    }
+  });
+
+  // promedio incluyendo tu voto, que es lo que se ve en pantalla
+  function prom(m) {
+    const todos = m.votos.concat(miVoto[m.id] ? [{ v: miVoto[m.id] }] : []);
+    return todos.length ? todos.reduce((s, v) => s + v.v, 0) / todos.length : 0;
+  }
+  const cuentaVotos = m => m.votos.length + (miVoto[m.id] ? 1 : 0);
+
+  function haceCuanto(d) {
+    const dias = Math.round((HOY - d) / 864e5);
+    if (dias < 1) return "hoy";
+    if (dias === 1) return "ayer";
+    if (dias < 30) return `hace ${dias} días`;
+    const meses = Math.round(dias / 30);
+    return meses === 1 ? "hace un mes" : `hace ${meses} meses`;
+  }
+
+  /* ── Orden ── */
+  const SORTS = {
+    recientes:  { label:"Últimos agregados", corto:"Últimos",   fn:(a,b) => b.agregado - a.agregado },
+    alfabetico: { label:"A → Z",             corto:"A → Z",     fn:(a,b) => a.t.localeCompare(b.t, "es") },
+    nuevas:     { label:"Año, más nuevas",   corto:"Año ↓",     fn:(a,b) => b.a - a.a },
+    viejas:     { label:"Año, más viejas",   corto:"Año ↑",     fn:(a,b) => a.a - b.a },
+    mejores:    { label:"Mejor calificadas", corto:"Mejores",   fn:(a,b) => prom(b) - prom(a) || b.votos.length - a.votos.length }
+  };
+  function posterHTML(m, big) {
+    const h = hash(m.t);
+    // hue restringido al arco petróleo → latón, para que la pared de posters sea una familia
+    const hue  = 26 + (h % 165);
+    const hue2 = (hue + 22 + (h >> 5) % 40) % 360;
+    const v = VAR[h % VAR.length];
+    const st = `--h:${hue};--h2:${hue2};--ang:${(h >> 3) % 180}deg;--px:${18 + h % 64}%;--py:${14 + (h >> 7) % 60}%`;
+    const tag = m.tp !== "pelicula" ? `<span class="tipo">${m.tp === "serie" ? "serie" : "ep"}</span>` : "";
+    return `<div class="poster ${v}" style="${st}"><i></i>${tag}<b>${esc(m.t)}</b></div>`;
+  }
+  function esc(s) {
+    return String(s).replace(/[&<>"]/g, c => ({ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;" }[c]));
+  }
+
+  /* ── Estado ── */
+  let filter = "todas", query = "", sort = "recientes";
+  const miVoto = {};   // id → 1..5. En la app real: tab `votos`, escrito vía el bot o un endpoint.
+
+  const screen = document.getElementById("screen");
+  const chipsEl = document.getElementById("chips");
+  const gridEl  = document.getElementById("grid");
+  const fichaEl = document.getElementById("paneFicha");
+  const qEl     = document.getElementById("q");
+  const hTitle  = document.getElementById("hTitle");
+  const hSub    = document.getElementById("hSub");
+  const countEl = document.getElementById("count");
+  const sortBtn = document.getElementById("sortBtn");
+  const sheetWrap = document.getElementById("sheetWrap");
+  const sortOpts  = document.getElementById("sortOpts");
+
+  function matches(m) {
+    if (filter !== "todas" && m.g !== filter) return false;
+    if (!query) return true;
+    const q = query.toLowerCase();
+    return (m.t + " " + m.o + " " + m.d).toLowerCase().includes(q);
+  }
+
+  function renderChips() {
+    const all = [{ slug:"todas", emoji:"", label:"Todas" }, ...GEN];
+    chipsEl.innerHTML = all.map(g => {
+      const n = g.slug === "todas" ? M.length : M.filter(m => m.g === g.slug).length;
+      return `<button class="chip" type="button" data-g="${g.slug}" aria-pressed="${filter === g.slug}">
+                ${g.emoji ? g.emoji + " " : ""}${esc(g.label)} <span class="n">${n}</span>
+              </button>`;
+    }).join("");
+  }
+
+  function renderGrid() {
+    const list = M.filter(matches).sort(SORTS[sort].fn);
+    const g = GEN.find(x => x.slug === filter);
+
+    hSub.textContent = g ? g.label.toLowerCase() : "mini app";
+    countEl.textContent = list.length === M.length
+      ? `${M.length} títulos`
+      : `${list.length} de ${M.length}`;
+    sortBtn.textContent = SORTS[sort].corto + " ▾";
+
+    const foot = document.getElementById("gridFoot");
+    foot.hidden = !list.length;
+
+    if (!list.length) {
+      // sin resultados el atajo es más urgente, y arrastra lo que buscaste
+      gridEl.innerHTML = `
+        <div class="empty" style="grid-column:1/-1">
+          <p style="margin:0 0 16px">No hay nada con ese criterio.</p>
+          <button class="add-cta" type="button" data-add="${esc(query)}">
+            <span class="plus">＋</span>
+            <span class="q">${query ? `Agregar «${esc(query)}»` : "Agregar una película"}</span>
+          </button>
+          <div class="add-note" style="margin-top:7px">se abre el chat del bot</div>
+        </div>`;
+      return;
+    }
+    gridEl.innerHTML = list.map(m => {
+      const p = prom(m);
+      return `
+      <button class="card" type="button" data-id="${m.id}">
+        ${posterHTML(m)}
+        <span class="t">${esc(m.t)}</span>
+        <span class="meta">
+          <span>${m.a}</span>
+          ${p ? `<span class="r">★ ${p.toFixed(1).replace(".", ",")}</span>` : ""}
+        </span>
+      </button>`;
+    }).join("");
+  }
+
+  /* Estrellas = promedio del grupo (relleno fraccionario), tocables para votar.
+     Tu voto va abajo, en número. */
+  function ratingHTML(m, settled) {
+    const mio = miVoto[m.id] || 0;
+    const p   = prom(m);
+    const c   = cuentaVotos(m);
+
+    return `
+      <div class="rating" data-id="${m.id}">
+        <div class="row">
+          <span class="rate" role="group"
+                aria-label="Promedio del grupo ${p ? p.toFixed(1) + " de 5" : "sin datos"}">
+            <span class="lyr b">★★★★★</span>
+            <span class="lyr f" style="width:${(p / 5) * 100}%">★★★★★</span>
+            <span class="hit">
+              ${[1,2,3,4,5].map(n =>
+                `<button type="button" data-v="${n}" aria-label="Votar ${n} de 5">★</button>`).join("")}
+            </span>
+          </span>
+          ${c
+            ? `<span class="num${settled ? " settled" : ""}">${p.toFixed(1).replace(".", ",")}</span>
+               <span class="n">${c} ${c === 1 ? "voto" : "votos"}</span>`
+            : `<span class="n">sin calificar</span>`}
+        </div>
+
+        <div class="mine">
+          <span class="lbl">Tu voto</span>
+          ${mio
+            ? `<span class="v">${mio}</span>
+               <button class="clear" type="button" data-v="0">quitar</button>`
+            : `<span class="v sin">—</span>
+               <span class="n">tocá las estrellas</span>`}
+        </div>
+      </div>`;
+  }
+
+  function pintarRating(m, settled) {
+    const slot = document.getElementById("ratingSlot");
+    if (slot) slot.innerHTML = ratingHTML(m, settled);
+  }
+
+  function renderFicha(m) {
+    const g = GEN.find(x => x.slug === m.g);
+    const facts = [
+      m.a,
+      m.d || "dirección sin cargar",
+      m.tp === "pelicula" ? "película" : m.tp
+    ].join("  ·  ");
+    fichaEl.innerHTML = `
+      <div class="ficha">
+        <div class="ficha-top">
+          ${posterHTML(m, true)}
+          <div class="ficha-meta">
+            <h2>${esc(m.t)}</h2>
+            ${m.o ? `<span class="orig">${esc(m.o)}</span>` : ""}
+            <span class="facts">${esc(facts)}</span>
+            <span class="badge">${g ? g.emoji + " " + esc(g.label) : "sin género"}</span>
+          </div>
+        </div>
+        <section>
+          <h3>Calificación</h3>
+          <div id="ratingSlot">${ratingHTML(m)}</div>
+        </section>
+        <div class="divider"></div>
+        <section>
+          <h3>Sinopsis</h3>
+          <p class="ph">${SINOPSIS}</p>
+        </section>
+        <section>
+          <h3>Propuesta por</h3>
+          <p>${m.by} <span class="ph">· ${haceCuanto(m.agregado)}</span></p>
+        </section>
+        <a class="out" href="#" onclick="return false">Ver en TMDB ↗</a>
+      </div>`;
+    hTitle.textContent = m.t;
+    hSub.textContent = m.a;
+    screen.dataset.view = "ficha";
+    fichaEl.scrollTop = 0;
+  }
+
+  /* ── Voto optimista ─────────────────────────────────────────────
+     · la estrella se pinta al instante, sin esperar al servidor
+     · si el envío falla no se hace nada visible (un reintento silencioso)
+     · cuando el servidor contesta, su promedio pisa al calculado localmente
+     · si tocás varias veces, sólo cuenta el último voto
+     ─────────────────────────────────────────────────────────────── */
+  const NET = {
+    normal: { label: "red: normal", ms: 320,  falla: false },
+    lenta:  { label: "red: lenta",  ms: 1700, falla: false },
+    caida:  { label: "red: caída",  ms: 800,  falla: true  }
+  };
+  let netMode = "normal";
+  const voteSeq = {};
+
+  fichaEl.addEventListener("click", e => {
+    const b = e.target.closest("[data-v]");
+    if (!b) return;
+    const id = +b.closest(".rating").dataset.id;
+    const v  = +b.dataset.v;
+
+    if (v === 0 || miVoto[id] === v) delete miVoto[id]; else miVoto[id] = v;
+    pintarRating(M[id]);                                  // optimista: ya está en pantalla
+
+    const seq = voteSeq[id] = (voteSeq[id] || 0) + 1;
+    enviarVoto(M[id], seq, false);
+  });
+
+  function enviarVoto(m, seq, esReintento) {
+    const net = NET[netMode];
+    setTimeout(() => {
+      if (voteSeq[m.id] !== seq) return;        // respuesta vieja: se descarta
+
+      if (net.falla) {
+        if (!esReintento) enviarVoto(m, seq, true);   // un reintento, invisible
+        return;                                       // y si vuelve a fallar, nada
+      }
+
+      // el servidor puede traer votos que entraron mientras tanto
+      if (m.votos.length < 8 && Math.random() < .4) {
+        m.votos.push({ v: 2 + Math.floor(Math.random() * 4) });
+      }
+      pintarRating(m, true);   // el promedio del servidor pisa al local
+    }, net.ms);
+  }
+
+  function toGrid() {
+    screen.dataset.view = "grid";
+    hTitle.textContent = "Cineclub";
+    renderGrid();
+  }
+
+  chipsEl.addEventListener("click", e => {
+    const b = e.target.closest(".chip");
+    if (!b) return;
+    filter = b.dataset.g;
+    renderChips();
+    renderGrid();
+  });
+
+  gridEl.addEventListener("click", e => {
+    const c = e.target.closest(".card");
+    if (c) renderFicha(M[+c.dataset.id]);
+  });
+
+  /* ── Atajo al bot ──────────────────────────────────────────────
+     En la app real: Telegram.WebApp.openTelegramLink(url) con
+     t.me/cineclubbot?start=add   (o ?start=add__<lo buscado>),
+     y después close() para volver al chat.
+     Acá sólo se muestra qué pasaría.
+     ────────────────────────────────────────────────────────────── */
+  document.getElementById("paneGrid").addEventListener("click", e => {
+    const b = e.target.closest("[data-add]");
+    if (!b) return;
+    const q = b.dataset.add;
+    const url = "t.me/cineclubbot?start=add" + (q ? "__" + encodeURIComponent(q) : "");
+    toast(`Cierra la Mini App y abre <b>${esc(url)}</b>` +
+          (q ? `<br>El bot arranca buscando «${esc(q)}».` : `<br>El bot pregunta qué título agregar.`));
+  });
+
+  let toastT;
+  function toast(html) {
+    document.querySelectorAll(".toast").forEach(t => t.remove());
+    const el = document.createElement("div");
+    el.className = "toast";
+    el.innerHTML = html;
+    screen.appendChild(el);
+    clearTimeout(toastT);
+    toastT = setTimeout(() => el.remove(), 4200);
+  }
+
+  document.getElementById("back").addEventListener("click", toGrid);
+
+  qEl.addEventListener("input", e => { query = e.target.value.trim(); renderGrid(); });
+
+  /* ── Sheet de orden ── */
+  function renderSortOpts() {
+    sortOpts.innerHTML = Object.entries(SORTS).map(([k, s]) =>
+      `<button type="button" role="radio" data-s="${k}" aria-checked="${sort === k}">
+         ${esc(s.label)} <span class="ck">✓</span>
+       </button>`).join("");
+  }
+  function openSheet()  { renderSortOpts(); sheetWrap.hidden = false; }
+  function closeSheet() { sheetWrap.hidden = true; sortBtn.focus(); }
+
+  sortBtn.addEventListener("click", openSheet);
+  document.getElementById("sheetBd").addEventListener("click", closeSheet);
+  sortOpts.addEventListener("click", e => {
+    const b = e.target.closest("[data-s]");
+    if (!b) return;
+    sort = b.dataset.s;
+    closeSheet();
+    renderGrid();
+    document.getElementById("paneGrid").scrollTop = 0;
+  });
+  screen.addEventListener("keydown", e => {
+    if (e.key === "Escape" && !sheetWrap.hidden) closeSheet();
+  });
+
+  /* ── Tema Telegram simulado ── */
+  const btn = document.getElementById("tgTheme");
+  function setTg(dark) {
+    screen.classList.toggle("tg-light", !dark);
+    btn.textContent = dark ? "☾ oscuro" : "☀ claro";
+    btn.setAttribute("aria-label", "Tema de Telegram: " + (dark ? "oscuro" : "claro"));
+  }
+  const root = document.documentElement.getAttribute("data-theme");
+  let tgDark = root ? root === "dark"
+                    : !window.matchMedia("(prefers-color-scheme: light)").matches;
+  setTg(tgDark);
+  btn.addEventListener("click", () => { tgDark = !tgDark; setTg(tgDark); });
+
+  /* ── Carga y error ── */
+  const stateLayer = document.getElementById("stateLayer");
+
+  const SKELETON = `
+    <div class="sk-controls">
+      <div class="sk sk-search"></div>
+      <div class="sk-chips">
+        ${[62, 78, 92, 70, 84].map(w => `<div class="sk" style="width:${w}px"></div>`).join("")}
+      </div>
+      <div class="sk sk-sort"></div>
+    </div>
+    <div class="sk-grid">
+      ${Array.from({ length: 12 }, () => `
+        <div class="sk-card">
+          <div class="sk p"></div>
+          <div class="sk l"></div>
+          <div class="sk l l2"></div>
+        </div>`).join("")}
+    </div>`;
+
+  const ERROR_HTML = `
+    <div class="err">
+      <span class="ico">⚠</span>
+      <h4>No pudimos cargar la lista</h4>
+      <p>Puede ser tu conexión o el servidor. Probá de nuevo en un momento.</p>
+      <button type="button" id="retry">Reintentar</button>
+    </div>`;
+
+  function cargar(queFalle) {
+    screen.dataset.view = "grid";
+    hTitle.textContent = "Cineclub";
+    hSub.textContent = "cargando…";
+    stateLayer.hidden = false;
+    stateLayer.innerHTML = SKELETON;
+
+    setTimeout(() => {
+      if (queFalle) {
+        hSub.textContent = "sin conexión";
+        stateLayer.innerHTML = ERROR_HTML;
+        document.getElementById("retry").addEventListener("click", () => cargar(false));
+      } else {
+        stateLayer.hidden = true;
+        stateLayer.innerHTML = "";
+        renderChips();
+        renderGrid();
+      }
+    }, queFalle ? 1100 : 1400);
+  }
+
+  document.getElementById("simReload").addEventListener("click", () => cargar(false));
+  document.getElementById("simError").addEventListener("click", () => cargar(true));
+
+  const netBtn = document.getElementById("simNet");
+  const MODOS = Object.keys(NET);
+  function pintarNet() { netBtn.textContent = NET[netMode].label; }
+  netBtn.addEventListener("click", () => {
+    netMode = MODOS[(MODOS.indexOf(netMode) + 1) % MODOS.length];
+    pintarNet();
+  });
+  pintarNet();
+
+  cargar(false);
+</script>
