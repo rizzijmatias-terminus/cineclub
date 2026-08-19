@@ -1,0 +1,290 @@
+[
+  {
+    "titulo": "Paris, Texas",
+    "anio": 1984,
+    "genero": "drama",
+    "tipo": "pelicula"
+  },
+  {
+    "titulo": "Godland",
+    "anio": 2022,
+    "genero": "drama",
+    "tipo": "pelicula"
+  },
+  {
+    "titulo": "Fondo de aire rojo",
+    "anio": 2024,
+    "genero": "drama",
+    "tipo": "pelicula"
+  },
+  {
+    "titulo": "Where Is the Friend’s House?",
+    "anio": 1987,
+    "genero": "drama",
+    "tipo": "pelicula"
+  },
+  {
+    "titulo": "The Time That Remains",
+    "anio": 2009,
+    "genero": "drama",
+    "tipo": "pelicula"
+  },
+  {
+    "titulo": "La batalla de Argel",
+    "anio": 1966,
+    "genero": "drama",
+    "tipo": "pelicula"
+  },
+  {
+    "titulo": "Felicidades",
+    "anio": 2000,
+    "genero": "drama",
+    "tipo": "pelicula"
+  },
+  {
+    "titulo": "Tengo miedo torero",
+    "anio": 2020,
+    "genero": "drama",
+    "tipo": "pelicula"
+  },
+  {
+    "titulo": "Dogville",
+    "anio": 2003,
+    "genero": "drama",
+    "tipo": "pelicula"
+  },
+  {
+    "titulo": "Dancer in the dark",
+    "anio": 2000,
+    "genero": "drama",
+    "tipo": "pelicula"
+  },
+  {
+    "titulo": "La classe operaia va in paradiso",
+    "anio": 1971,
+    "genero": "drama",
+    "tipo": "pelicula"
+  },
+  {
+    "titulo": "Novecento",
+    "anio": 1976,
+    "genero": "drama",
+    "tipo": "pelicula"
+  },
+  {
+    "titulo": "Wadjda",
+    "anio": 2012,
+    "genero": "drama",
+    "tipo": "pelicula"
+  },
+  {
+    "titulo": "Las tortugas también vuelan",
+    "anio": 2004,
+    "genero": "drama",
+    "tipo": "pelicula"
+  },
+  {
+    "titulo": "Rocco e i suoi fratelli",
+    "anio": 1960,
+    "genero": "drama",
+    "tipo": "pelicula"
+  },
+  {
+    "titulo": "La terra trema",
+    "anio": 1948,
+    "genero": "drama",
+    "tipo": "pelicula"
+  },
+  {
+    "titulo": "I, Daniel Blake",
+    "anio": 2016,
+    "genero": "drama",
+    "tipo": "pelicula"
+  },
+  {
+    "titulo": "Mundo grúa",
+    "anio": 1999,
+    "genero": "drama",
+    "tipo": "pelicula"
+  },
+  {
+    "titulo": "Los lunes al sol",
+    "anio": 2001,
+    "genero": "drama",
+    "tipo": "pelicula"
+  },
+  {
+    "titulo": "El angel",
+    "anio": 2018,
+    "genero": "drama",
+    "tipo": "pelicula"
+  },
+  {
+    "titulo": "Memories of Murder",
+    "anio": 2003,
+    "genero": "suspenso",
+    "tipo": "pelicula"
+  },
+  {
+    "titulo": "8mm",
+    "anio": 1999,
+    "genero": "suspenso",
+    "tipo": "pelicula"
+  },
+  {
+    "titulo": "Tesis",
+    "anio": 1996,
+    "genero": "suspenso",
+    "tipo": "pelicula"
+  },
+  {
+    "titulo": "Killing Them Softly",
+    "anio": 2012,
+    "genero": "suspenso",
+    "tipo": "pelicula"
+  },
+  {
+    "titulo": "Frankenstein",
+    "anio": 2025,
+    "genero": "terror",
+    "tipo": "pelicula"
+  },
+  {
+    "titulo": "Funny Games",
+    "anio": 1997,
+    "genero": "terror",
+    "tipo": "pelicula"
+  },
+  {
+    "titulo": "Dellamorte Dellamore",
+    "anio": 1994,
+    "genero": "terror",
+    "tipo": "pelicula"
+  },
+  {
+    "titulo": "Pontypool",
+    "anio": 2008,
+    "genero": "terror",
+    "tipo": "pelicula"
+  },
+  {
+    "titulo": "Brazil",
+    "anio": 1985,
+    "genero": "scifi",
+    "tipo": "pelicula"
+  },
+  {
+    "titulo": "The Man from Earth",
+    "anio": 2007,
+    "genero": "scifi",
+    "tipo": "pelicula"
+  },
+  {
+    "titulo": "Videodrome",
+    "anio": 1983,
+    "genero": "scifi",
+    "tipo": "pelicula"
+  },
+  {
+    "titulo": "Moebius",
+    "anio": 1996,
+    "genero": "scifi",
+    "tipo": "pelicula"
+  },
+  {
+    "titulo": "Fitzcarraldo",
+    "anio": 1982,
+    "genero": "aventura",
+    "tipo": "pelicula"
+  },
+  {
+    "titulo": "Dersu Uzala",
+    "anio": 1975,
+    "genero": "aventura",
+    "tipo": "pelicula"
+  },
+  {
+    "titulo": "Héroe",
+    "anio": 2002,
+    "genero": "aventura",
+    "tipo": "pelicula"
+  },
+  {
+    "titulo": "One Battle After Another",
+    "anio": 2025,
+    "genero": "aventura",
+    "tipo": "pelicula"
+  },
+  {
+    "titulo": "Satyricon",
+    "anio": 1969,
+    "genero": "comedia",
+    "tipo": "pelicula"
+  },
+  {
+    "titulo": "Robot Carnival",
+    "anio": 1987,
+    "genero": "comedia",
+    "tipo": "pelicula"
+  },
+  {
+    "titulo": "The Hudsucker Proxy",
+    "anio": 1994,
+    "genero": "comedia",
+    "tipo": "pelicula"
+  },
+  {
+    "titulo": "La Fiaca",
+    "anio": 1969,
+    "genero": "comedia",
+    "tipo": "pelicula"
+  },
+  {
+    "titulo": "The Last Supper",
+    "anio": 1995,
+    "genero": "comedia",
+    "tipo": "pelicula"
+  },
+  {
+    "titulo": "The Boat That Rocked",
+    "anio": 2009,
+    "genero": "comedia",
+    "tipo": "pelicula"
+  },
+  {
+    "titulo": "Las trillizas de Belleville",
+    "anio": 2003,
+    "genero": "comedia",
+    "tipo": "pelicula"
+  },
+  {
+    "titulo": "Unsere Mütter, unsere Väter",
+    "anio": 2013,
+    "genero": "serie",
+    "tipo": "serie"
+  },
+  {
+    "titulo": "La Casa De Los Espíritus",
+    "anio": 2026,
+    "genero": "serie",
+    "tipo": "serie"
+  },
+  {
+    "titulo": "Los Simpson, T03E01",
+    "anio": 1991,
+    "genero": "serie",
+    "tipo": "episodio",
+    "serie": "Los Simpson",
+    "temporada": 3,
+    "episodio": 1
+  },
+  {
+    "titulo": "Rick y Morty, T03E07",
+    "anio": 2017,
+    "genero": "serie",
+    "tipo": "episodio",
+    "serie": "Rick y Morty",
+    "temporada": 3,
+    "episodio": 7
+  }
+]
