@@ -79,7 +79,21 @@ no estrenaron (*La Casa de los Espíritus*, 2026).
 **Cuidado con el poster de los episodios**: se usa `still_path` (el fotograma del
 episodio) y si no hay, cae al poster de la serie.
 
-## 3. Cargar a la base
+## 3. Validar
+
+```bash
+python3 seed/validar.py
+```
+
+Chequea las mismas reglas que va a imponer Postgres, pero con mensajes que se
+entienden: tipos válidos, coherencia entre `tipo` y `tmdb_tipo`, episodios con
+temporada y episodio, y sobre todo **la clave única** `(tmdb_tipo, tmdb_id,
+temporada, episodio)`. También avisa si el JSON y la nota se separaron en
+cantidad de títulos.
+
+Sale con código 1 si hay errores, así que sirve de compuerta antes de cargar.
+
+## 4. Cargar a la base
 
 Pendiente: depende del proyecto Django, que todavía no existe. El cargador va a
 leer `titulos.json` y poblar `generos`, `titulos` y el usuario que figura como
