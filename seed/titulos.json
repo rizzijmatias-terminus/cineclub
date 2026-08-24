@@ -3,271 +3,521 @@
     "titulo": "Paris, Texas",
     "anio": 1984,
     "genero": "drama",
-    "tipo": "pelicula"
+    "tipo": "pelicula",
+    "tmdb_tipo": "movie",
+    "tmdb_id": 655,
+    "titulo_original": null,
+    "poster_path": "/ba8edzVOul1uDHaLgDImALqhsN1.jpg",
+    "sinopsis": "Un hombre camina por el desierto de Texas sin recordar quién es. Su hermano lo busca e intenta que recuerde cómo era su vida cuatro años antes, cuando abandonó a su mujer y a su hijo. A medida que va recuperando la memoria y se relaciona con personas de su pasado, se plantea la necesidad de rehacer su vida.",
+    "director": "Wim Wenders"
   },
   {
     "titulo": "Godland",
     "anio": 2022,
     "genero": "drama",
-    "tipo": "pelicula"
+    "tipo": "pelicula",
+    "tmdb_tipo": "movie",
+    "tmdb_id": 960206,
+    "titulo_original": "Vanskabte land",
+    "poster_path": "/lkqCFySAteosKDEVRJLYFp60rK8.jpg",
+    "sinopsis": "A finales del siglo XIX, un joven sacerdote danés llega a Islandia con la misión de construir una iglesia y fotografiar a sus habitantes. Pero, cuanto más se interna en aquel implacable paisaje, más se sume en las ansias de la tentación y el pecado.",
+    "director": "Hlynur Pálmason"
   },
   {
     "titulo": "Fondo de aire rojo",
     "anio": 2024,
     "genero": "drama",
-    "tipo": "pelicula"
+    "tipo": "pelicula",
+    "tmdb_tipo": "movie",
+    "tmdb_id": 53197
   },
   {
     "titulo": "Where Is the Friend’s House?",
     "anio": 1987,
     "genero": "drama",
-    "tipo": "pelicula"
+    "tipo": "pelicula",
+    "tmdb_tipo": "movie",
+    "tmdb_id": 49964
   },
   {
     "titulo": "The Time That Remains",
     "anio": 2009,
     "genero": "drama",
-    "tipo": "pelicula"
+    "tipo": "pelicula",
+    "tmdb_tipo": "movie",
+    "tmdb_id": 694314
   },
   {
     "titulo": "La batalla de Argel",
     "anio": 1966,
     "genero": "drama",
-    "tipo": "pelicula"
+    "tipo": "pelicula",
+    "tmdb_tipo": "movie",
+    "tmdb_id": 17295,
+    "titulo_original": "La battaglia di Algeri",
+    "poster_path": "/tw3GaZhFDxtVJdibJwbnE3FSthl.jpg",
+    "sinopsis": "La película narra la lucha del Frente de Liberación Nacional argelino por liberarse del dominio colonial francés a través de los ojos de Alí, desde sus comienzos como un simple ladrón hasta su ascenso a la cima de la organización y su captura por los franceses en 1957. La película narra la lucha de los rebeldes y las medidas cada vez más extremas adoptadas por el gobierno francés para sofocar la revuelta.",
+    "director": "Gillo Pontecorvo"
   },
   {
     "titulo": "Felicidades",
     "anio": 2000,
     "genero": "drama",
-    "tipo": "pelicula"
+    "tipo": "pelicula",
+    "tmdb_tipo": "movie",
+    "tmdb_id": 71118,
+    "titulo_original": null,
+    "poster_path": "/ozRxMgEMNITFS2tGRha3da7pJIW.jpg",
+    "sinopsis": "Es Nochebuena en Argentina. Un escritor famoso que no es feliz y que decide viajar al encuentro de su amada; un médico que quiere ligar con una española, y un odontólogo loco por encontrar el juguete que su hijo quiere de regalo. Una ácida visión sobre la otra cara de la navidad, donde la clase media insiste en sostener una celebración que ya ha perdido su naturaleza. Todos la festejan, pero se centra en los que quedan fuera: los protagonistas, que transitan en un mundo al revés, un mundo en el que irónicamente los justicieros se vuelven delincuentes y los nobles, miserables.",
+    "director": "Lucho Bender"
   },
   {
     "titulo": "Tengo miedo torero",
     "anio": 2020,
     "genero": "drama",
-    "tipo": "pelicula"
+    "tipo": "pelicula",
+    "tmdb_tipo": "movie",
+    "tmdb_id": 651170,
+    "titulo_original": null,
+    "poster_path": "/rr79BAaLLt6ElEGQx3IHkEhKiYR.jpg",
+    "sinopsis": "Entre disparos y boleros, florece una apasionada relación entre un travesti solitario y un joven guerrillero durante la dictadura de Pinochet.",
+    "director": "Rodrigo Sepúlveda"
   },
   {
     "titulo": "Dogville",
     "anio": 2003,
     "genero": "drama",
-    "tipo": "pelicula"
+    "tipo": "pelicula",
+    "tmdb_tipo": "movie",
+    "tmdb_id": 553,
+    "titulo_original": null,
+    "poster_path": "/fvWcHU44Kn7L1Ve64ye2WQWA2tf.jpg",
+    "sinopsis": "Grace llega al remoto pueblo de Dogville huyendo de una banda de gángsters. Persuadidos por las palabras de Tom, que se ha erigido en portavoz de la comunidad, los vecinos se avienen a ocultarla. Grace, a cambio, trabaja para ellos. Sin embargo, cuando Dogville sea sometido a una intensa vigilancia policial para dar con la fugitiva, sus habitantes exigirán a Grace otros servicios que les compensen del peligro que corren al darle cobijo. Grace aprenderá, de un modo brutal, que en ese pueblo la bondad es algo muy relativo. Pero ella guarda un secreto que no quiere desvelar.",
+    "director": "Lars von Trier"
   },
   {
     "titulo": "Dancer in the dark",
     "anio": 2000,
     "genero": "drama",
-    "tipo": "pelicula"
+    "tipo": "pelicula",
+    "tmdb_tipo": "movie",
+    "tmdb_id": 16,
+    "titulo_original": null,
+    "poster_path": "/h5z2eLenia7WjXEnbuG8jmt3ULU.jpg",
+    "sinopsis": "Selma, inmigrante checa y madre soltera, trabaja en la fábrica de un pueblo de los Estados Unidos. La única vía de escape a tan rutinaria vida es su pasión por la música, especialmente por las canciones y los números de baile de los musicales clásicos de Hollywood. Selma esconde un triste secreto: está perdiendo la vista, pero lo peor es que su hijo también se quedará ciego, si ella no consigue, a tiempo, el dinero suficiente para que se opere. Tercera película de la trilogía \"Corazón dorado\" de Lars Von Trier.",
+    "director": "Lars von Trier"
   },
   {
     "titulo": "La classe operaia va in paradiso",
     "anio": 1971,
     "genero": "drama",
-    "tipo": "pelicula"
+    "tipo": "pelicula",
+    "tmdb_tipo": "movie",
+    "tmdb_id": 56231,
+    "titulo_original": null,
+    "poster_path": "/8OWORT3ldccCnuyMsHrSkYjwiwN.jpg",
+    "sinopsis": "After losing a finger in a work accident, an Italian worker becomes increasingly involved in political and revolutionary groups.",
+    "director": "Elio Petri"
   },
   {
     "titulo": "Novecento",
     "anio": 1976,
     "genero": "drama",
-    "tipo": "pelicula"
+    "tipo": "pelicula",
+    "tmdb_tipo": "movie",
+    "tmdb_id": 3870,
+    "titulo_original": null,
+    "poster_path": "/5BeMiIveAXnmHvuZVkRpCeE0pWR.jpg",
+    "sinopsis": "En el año 1901, en una finca del norte de Italia, nacen el mismo día el hijo de un terrateniente y el hijo de un bracero que serán amigos inseparables, aunque su relación se verá nublada por sus diferentes actitudes frente al fascismo. Drama que hace un complejo recorrido político y social por la Italia del siglo XX.",
+    "director": "Bernardo Bertolucci"
   },
   {
     "titulo": "Wadjda",
     "anio": 2012,
     "genero": "drama",
-    "tipo": "pelicula"
+    "tipo": "pelicula",
+    "tmdb_tipo": "movie",
+    "tmdb_id": 129112
   },
   {
     "titulo": "Las tortugas también vuelan",
     "anio": 2004,
     "genero": "drama",
-    "tipo": "pelicula"
+    "tipo": "pelicula",
+    "tmdb_tipo": "movie",
+    "tmdb_id": 8340,
+    "titulo_original": "کیسەڵەکانیش دەفڕن",
+    "poster_path": "/iO5wsls7m9LMT7f9oMcy2C2aZt5.jpg",
+    "sinopsis": "Los habitantes de un campo de refugiados del Kurdistán iraquí buscan desesperadamente una antena parabólica para poder estar informados del inminente ataque americano contra Irak. Los niños del campamento, liderados por un chico al que llaman \"Satélite\", se dedican a la recogida y venta de minas antipersona. Nuevos refugiados llegan al lugar: un joven mutilado, su hermana y un niño pequeño. Satélite quedará prendado de la triste belleza de la joven.",
+    "director": "Bahman Ghobadi"
   },
   {
     "titulo": "Rocco e i suoi fratelli",
     "anio": 1960,
     "genero": "drama",
-    "tipo": "pelicula"
+    "tipo": "pelicula",
+    "tmdb_tipo": "movie",
+    "tmdb_id": 8422,
+    "titulo_original": null,
+    "poster_path": "/trnuVTb51jRHDHbibttTQrfXwrE.jpg",
+    "sinopsis": "Rosaria y sus cuatro hijos (Simone, Rocco, Ciro y Luca) abandonan su tierra natal, Lucania (la actual Basilicata), para emigrar a Milán en busca de trabajo y oportunidades que les permitan mejorar sus condiciones de vida. Allí encuentran a Vincenzo, el hermano mayor, que trabaja de albañil pero que está relacionado con el mundo del boxeo.",
+    "director": "Luchino Visconti"
   },
   {
     "titulo": "La terra trema",
     "anio": 1948,
     "genero": "drama",
-    "tipo": "pelicula"
+    "tipo": "pelicula",
+    "tmdb_tipo": "movie",
+    "tmdb_id": 43445,
+    "titulo_original": null,
+    "poster_path": "/3jNFlP5VwOoF3gIeX2aRE70yXuW.jpg",
+    "sinopsis": "In rural Sicily, the fishermen live at the mercy of the greedy wholesalers. One family risks everything to buy their own boat and operate independently.",
+    "director": "Luchino Visconti"
   },
   {
     "titulo": "I, Daniel Blake",
     "anio": 2016,
     "genero": "drama",
-    "tipo": "pelicula"
+    "tipo": "pelicula",
+    "tmdb_tipo": "movie",
+    "tmdb_id": 374473,
+    "titulo_original": null,
+    "poster_path": "/akgb2pVUwOsWa26KyO2UjFoZgWE.jpg",
+    "sinopsis": "Por primera vez en su vida, víctima de problemas cardiacos, Daniel Blake, carpintero inglés de 59 años, se ve obligado a acudir a la asistencia social. Sin embargo, a pesar de que el médico le ha prohibido trabajar, la administración le obliga a buscar un empleo si no desea recibir una sanción. En la oficina de empleo, Daniel se cruza con Katie, una madre soltera con dos niños. Prisioneros de la maraña administrativa actual de Gran Bretaña, Daniel y Katie intentarán ayudarse mutuamente.",
+    "director": "Ken Loach"
   },
   {
     "titulo": "Mundo grúa",
     "anio": 1999,
     "genero": "drama",
-    "tipo": "pelicula"
+    "tipo": "pelicula",
+    "tmdb_tipo": "movie",
+    "tmdb_id": 101338,
+    "titulo_original": null,
+    "poster_path": "/eAyHxFZDtnzx1d8yH12w92HItF1.jpg",
+    "sinopsis": "Rulo busca trabajo a sus 50 años como operador de grúas de construcción, pero debe pasar por diferentes pruebas para obtener el puesto. Mientras se esfuerza por mantener a su madre y a su hijo Claudio de 19 años que intenta montar su propria banda de rock, Rulo tendrá que resignarse a aceptar un puesto a 2.000 kilómetros de distancia de Buenos Aires, aunque el largo período de adaptación le servirá de poco y tendrá que replantearse volver a empezar de nuevo.",
+    "director": "Pablo Trapero"
   },
   {
     "titulo": "Los lunes al sol",
     "anio": 2001,
     "genero": "drama",
-    "tipo": "pelicula"
+    "tipo": "pelicula",
+    "tmdb_tipo": "movie",
+    "tmdb_id": 54580,
+    "titulo_original": null,
+    "poster_path": "/zQ5i3LDn25k2HhLOm3fjaXcjkux.jpg",
+    "sinopsis": "En una ciudad costera del norte de España, a la que el desarrollo industrial ha hecho crecer desaforadamente, Santa (Bardem) y otros afectados por la reconversión recorren cada día las calles, buscando salidas a su situación precaria. Son funambulistas de fin de mes, sin red y sin público, sin aplausos al final; viven en la cuerda floja del trabajo precario y sobreviven gracias a sus pequeñas alegrías y rutinas.",
+    "director": "Fernando León de Aranoa"
   },
   {
     "titulo": "El angel",
     "anio": 2018,
     "genero": "drama",
-    "tipo": "pelicula"
+    "tipo": "pelicula",
+    "tmdb_tipo": "movie",
+    "tmdb_id": 507505,
+    "titulo_original": null,
+    "poster_path": "/oX0CwV677gyZFApZxTkAWcBcyOE.jpg",
+    "sinopsis": "Carlitos es un joven de diecisiete años con fama de estrella de cine, rizos rubios y cara de bebé. Ya en su primera adolescencia manifestó su verdadera vocación: ser un ladrón. Cuando conoce a Ramón en su nueva escuela, Carlitos se siente inmediatamente atraído por él y quiere llamar su atención. Juntos se embarcarán en un viaje de descubrimientos, amor y crimen. Debido a su apariencia angelical, la prensa llama a Carlitos \"El ángel de la muerte\". Llama la atención por su belleza, y se convierte en una celebridad de la noche a la mañana. En total se cree que cometió más de cuarenta robos y once asesinatos. Hoy, después de más de cuarenta y cinco años en la cárcel, Carlos Robledo Puch es el preso que más tiempo lleva en prisión en la historia de Argentina.",
+    "director": "Luis Ortega"
   },
   {
     "titulo": "Memories of Murder",
     "anio": 2003,
     "genero": "suspenso",
-    "tipo": "pelicula"
+    "tipo": "pelicula",
+    "tmdb_tipo": "movie",
+    "tmdb_id": 305603
   },
   {
     "titulo": "8mm",
     "anio": 1999,
     "genero": "suspenso",
-    "tipo": "pelicula"
+    "tipo": "pelicula",
+    "tmdb_tipo": "movie",
+    "tmdb_id": 8224,
+    "titulo_original": null,
+    "poster_path": "/pKaQkLhGifRaDl7stfpoeGmrP9Y.jpg",
+    "sinopsis": "Un investigador privado es contratado para descubrir si una película snuff es auténtica o no.",
+    "director": "Joel Schumacher"
   },
   {
     "titulo": "Tesis",
     "anio": 1996,
     "genero": "suspenso",
-    "tipo": "pelicula"
+    "tipo": "pelicula",
+    "tmdb_tipo": "movie",
+    "tmdb_id": 9299,
+    "titulo_original": null,
+    "poster_path": "/1vF1UOmmv9SPIob1CK7sKkHs0cG.jpg",
+    "sinopsis": "Ángela, estudiante de Imagen, está preparando una tesis sobre la violencia audiovisual. Como complemento a su trabajo, su director de tesis se compromete a buscar en la videoteca de la facultad material para ella, pero al día siguiente es hallado muerto. Ángela conoce a Chema, un compañero experto en cine gore y pornográfico, y a Bosco, un extraño chico, amigo íntimo de una joven asesinada en una snuff movie.",
+    "director": "Alejandro Amenábar"
   },
   {
     "titulo": "Killing Them Softly",
     "anio": 2012,
     "genero": "suspenso",
-    "tipo": "pelicula"
+    "tipo": "pelicula",
+    "tmdb_tipo": "movie",
+    "tmdb_id": 64689,
+    "titulo_original": null,
+    "poster_path": "/3b1Gbv2N13ZaTTEsDyDXUqrsPx6.jpg",
+    "sinopsis": "Dos ex-convictos no demasiado brillantes son contratados para asaltar una lucrativa partida ilegal de poker. Las culpas recaerán sobre el organizador del juego y los ladrones podrán empezar una nueva vida. Por desgracia, el dinero robado pertenece a la mafia, que se pone en contacto con el investigador y asesino Jackie Cogan para encontrar a los culpables.",
+    "director": "Andrew Dominik"
   },
   {
     "titulo": "Frankenstein",
     "anio": 2025,
     "genero": "terror",
-    "tipo": "pelicula"
+    "tipo": "pelicula",
+    "tmdb_tipo": "movie",
+    "tmdb_id": 1062722
+  },
+  {
+    "titulo": "Frankenstein: Una lección de anatomía",
+    "anio": 2025,
+    "genero": "terror",
+    "tipo": "pelicula",
+    "tmdb_tipo": "movie",
+    "tmdb_id": 1576287
   },
   {
     "titulo": "Funny Games",
     "anio": 1997,
     "genero": "terror",
-    "tipo": "pelicula"
+    "tipo": "pelicula",
+    "tmdb_tipo": "movie",
+    "tmdb_id": 10234,
+    "titulo_original": null,
+    "poster_path": "/xdqXXacYzPwVAS4AvZz87u23wyW.jpg",
+    "sinopsis": "Anna, Georg y su hijo Georgie van a pasar las vacaciones a su bonita casa a orillas de un lago. Sus vecinos Fred y Eva han llegado antes que ellos. Las dos parejas quedan para jugar al golf al día siguiente. Mientras padre e hijo preparan el velero, Anna prepara la cena. De repente, Peter, un joven muy educado que se aloja en casa de los vecinos, se presenta para pedir que le presten algunos huevos porque a Eva no le queda ninguno. De repente, Anna se pregunta cómo ha podido entrar en la casa. El joven le explica que Fred le ha enseñado un agujero que hay en la cerca.  Poco a poco la familia verá como son invadidos por estos dos jóvenes, que les harán la vida imposible.",
+    "director": "Michael Haneke"
   },
   {
     "titulo": "Dellamorte Dellamore",
     "anio": 1994,
     "genero": "terror",
-    "tipo": "pelicula"
+    "tipo": "pelicula",
+    "tmdb_tipo": "movie",
+    "tmdb_id": 21588,
+    "titulo_original": null,
+    "poster_path": "/ouqIPlczOt2fpr9KkJ5EndSnSQp.jpg",
+    "sinopsis": "Francesco Dellamorte es el cuidador del cementerio de Buffalora, un pueblo del norte de Italia. Dellamorte vive una vida solitaria apartado del mundo; su único amigo es Gnaghi, un pequeño, feo, lisiado y mudo compañero con el que comparte su ronda diaria por el cementerio. Desde hace algún tiempo, los muertos enterrados en el cementerio de Buffalora reviven debido a una súbita y misteriosa epidemia. Dellamorte tendrá que impedir que los muertos invadan el mundo de los vivos, algo que el resto de los humanos piensa que es sólo parte de su imaginación...",
+    "director": "Michele Soavi"
   },
   {
     "titulo": "Pontypool",
     "anio": 2008,
     "genero": "terror",
-    "tipo": "pelicula"
+    "tipo": "pelicula",
+    "tmdb_tipo": "movie",
+    "tmdb_id": 23963,
+    "titulo_original": null,
+    "poster_path": "/4wWMvurzg1AoArX57pqsPWwhps2.jpg",
+    "sinopsis": "Vivimos en la época del meme y las campañas de publicidad virales. Frases o palabras que se esparcen por Internet como un virus; palabras que pierden su significado original y adquieren uno nuevo al ser repetido constantemente hasta la sinrazón. \"Pontypool\" aborda este concepto de las palabras como plaga; podemos convertirnos, sin notarlo, en una especie de zombis repitiendo las mismas cosas que otros dicen una y otra vez.",
+    "director": "Bruce McDonald"
   },
   {
     "titulo": "Brazil",
     "anio": 1985,
     "genero": "scifi",
-    "tipo": "pelicula"
+    "tipo": "pelicula",
+    "tmdb_tipo": "movie",
+    "tmdb_id": 68,
+    "titulo_original": null,
+    "poster_path": "/x7N8ZbCw7ojT8XbvoeGL0LXTK8E.jpg",
+    "sinopsis": "En un extraño y deprimente universo futurista donde reinan las máquinas, una mosca cae dentro de un ordenador y cambia el apellido del guerrillero Harry Tuttle (Robert de Niro) por el del tranquilo padre de familia Harry Buttle, que es detenido y asesinado por el aparato represor del Estado. El tranquilo burócrata Sam Lowry (Jonathan Pryce) es el encargado de devolver un talón a la familia de la víctima, circunstancia que le permite conocer a Jill Layton (Kim Greist), la mujer de sus sueños. Y, mientras la persigue, hace amistad con Harry Tuttle y se convierte en su cómplice.",
+    "director": "Terry Gilliam"
   },
   {
     "titulo": "The Man from Earth",
     "anio": 2007,
     "genero": "scifi",
-    "tipo": "pelicula"
+    "tipo": "pelicula",
+    "tmdb_tipo": "movie",
+    "tmdb_id": 13363,
+    "titulo_original": null,
+    "poster_path": "/uN3X6JZhcEZqLTeQ8r5CKEmKeix.jpg",
+    "sinopsis": "Una fiesta de despedida improvisada para el profesor John Oldman se convierte en un misterioso interrogatorio después de que el erudito que se jubila revela a sus colegas que nunca envejece y que ha caminado por la tierra durante 14 000 años.",
+    "director": "Richard Schenkman"
   },
   {
     "titulo": "Videodrome",
     "anio": 1983,
     "genero": "scifi",
-    "tipo": "pelicula"
+    "tipo": "pelicula",
+    "tmdb_tipo": "movie",
+    "tmdb_id": 837,
+    "titulo_original": null,
+    "poster_path": "/qqqkiZSU9EBGZ1KiDmfn07S7qvv.jpg",
+    "sinopsis": "Max Renn, responsable de un sórdido canal de televisión por cable, descubre un día una emisora pirata llamada \"Videodrome\" con contenidos muy violentos y realistas. Una palpitante pesadilla de ciencia-ficción que nos muestra un mundo en el que el vídeo puede controlar y alterar la vida humana. Considerada por Andy Warhol la \"naranja mecánica\" de los 80.",
+    "director": "David Cronenberg"
   },
   {
     "titulo": "Moebius",
     "anio": 1996,
     "genero": "scifi",
-    "tipo": "pelicula"
+    "tipo": "pelicula",
+    "tmdb_tipo": "movie",
+    "tmdb_id": 39335,
+    "titulo_original": null,
+    "poster_path": "/kmZZNYULK60E0socp5mH9OOvpHS.jpg",
+    "sinopsis": "El sistema subterráneo de Buenos Aires se vuelve un laberinto y un tren se pierde, puede oírsele al pasar pero no se ve.",
+    "director": "Gustavo Mosquera R."
   },
   {
     "titulo": "Fitzcarraldo",
     "anio": 1982,
     "genero": "aventura",
-    "tipo": "pelicula"
+    "tipo": "pelicula",
+    "tmdb_tipo": "movie",
+    "tmdb_id": 9343,
+    "titulo_original": null,
+    "poster_path": "/ArN2ltzwfJG0bFuLBQMYuYK3rpk.jpg",
+    "sinopsis": "Brian Fitzgerald \"Fitzcarraldo\", un excéntrico y megalómano hombre de negocios obsesionado con la ópera, ha ido perdiendo su prestigio y su fortuna en absurdas empresas sin futuro. Su último proyecto consiste en construir un teatro de ópera en un poblado peruano a orillas del Amazonas; para conseguir el capital necesario para financiar tan magna empresa se dedica al comercio del caucho. Su extravagante plan exige sacar del río un gran barco fluvial y transportarlo hasta la cima de un monte.",
+    "director": "Werner Herzog"
   },
   {
     "titulo": "Dersu Uzala",
     "anio": 1975,
     "genero": "aventura",
-    "tipo": "pelicula"
+    "tipo": "pelicula",
+    "tmdb_tipo": "movie",
+    "tmdb_id": 9764
   },
   {
     "titulo": "Héroe",
     "anio": 2002,
     "genero": "aventura",
-    "tipo": "pelicula"
+    "tipo": "pelicula",
+    "tmdb_tipo": "movie",
+    "tmdb_id": 79,
+    "titulo_original": "英雄",
+    "poster_path": "/8wCNKCde0kIZ4cgiUJx5t868prT.jpg",
+    "sinopsis": "Cuando China estaba dividida en siete reinos que se enfrentaron entre sí para conseguir la hegemonía, la miseria y la muerte asolaron el país. Al rey Qin, que vivía obsesionado con la idea de unificar China y convertirse en el primer Emperador, intentaron asesinarlo los otros monarcas. Entre los asesinos contratados, los más temibles eran Espada Rota, Nieve Volante y Cielo. Qin promete poder, riquezas y una audiencia privada a quien consiga vencer a los tres sicarios, pero es una tarea casi imposible. De modo que, cuando el enigmático \"Sin Nombre\" llega al palacio con las legendarias armas de los asesinos, el rey se muestra impaciente por oír su historia.",
+    "director": "张艺谋"
   },
   {
     "titulo": "One Battle After Another",
     "anio": 2025,
     "genero": "aventura",
-    "tipo": "pelicula"
+    "tipo": "pelicula",
+    "tmdb_tipo": "movie",
+    "tmdb_id": 1054867,
+    "titulo_original": null,
+    "poster_path": "/kgVBwI8V4jjYTEbfyugEr6sDa7v.jpg",
+    "sinopsis": "Cuando su malvado némesis resurge después de 16 años, una banda de ex revolucionarios se reúne para rescatar a la hija de uno de los suyos.",
+    "director": "Paul Thomas Anderson"
   },
   {
     "titulo": "Satyricon",
     "anio": 1969,
     "genero": "comedia",
-    "tipo": "pelicula"
+    "tipo": "pelicula",
+    "tmdb_tipo": "movie",
+    "tmdb_id": 281783,
+    "titulo_original": null,
+    "poster_path": "/6p9TWSnP1Ydx7UDHUPTTHpinQDR.jpg",
+    "sinopsis": "A series of bawdy and satirical episodes written during the reign of the emperor Nero and set in imperial Rome. Like the more famous version made by Federico Fellini, an adaptation of Petronius' Satyricon.",
+    "director": "Gian Luigi Polidoro"
   },
   {
     "titulo": "Robot Carnival",
     "anio": 1987,
     "genero": "comedia",
-    "tipo": "pelicula"
+    "tipo": "pelicula",
+    "tmdb_tipo": "movie",
+    "tmdb_id": 33441,
+    "titulo_original": "ロボット・カーニバル",
+    "poster_path": "/6QzajemGLZ2iv0L7RgFIDRlD5Bh.jpg",
+    "sinopsis": "Película que incluye una serie de 9 cortos, todos basados en robots y su relación e interacción con la humanidad, tomando gran importancia el gran ambiente musical que orquesta en gran medida el ritmo de la animación, prescindiendo en la mayoría de los casos de diálogos.",
+    "director": "福島敦子, なかむらたかし, 北久保弘之, 大橋学, 森本晃司, 北爪宏幸, 梅津泰臣, 大森英敏, 大友克洋"
   },
   {
     "titulo": "The Hudsucker Proxy",
     "anio": 1994,
     "genero": "comedia",
-    "tipo": "pelicula"
+    "tipo": "pelicula",
+    "tmdb_tipo": "movie",
+    "tmdb_id": 11934,
+    "titulo_original": null,
+    "poster_path": "/vOjTpUOD0y4NQbjNpP0A0z8I4K9.jpg",
+    "sinopsis": "A naive business graduate is installed as president of a manufacturing company as part of a stock scam.",
+    "director": "Joel Coen, Ethan Coen"
   },
   {
     "titulo": "La Fiaca",
     "anio": 1969,
     "genero": "comedia",
-    "tipo": "pelicula"
+    "tipo": "pelicula",
+    "tmdb_tipo": "movie",
+    "tmdb_id": 244340,
+    "titulo_original": null,
+    "poster_path": "/qEK7O4sX45uXivlJsmWSCtsJS2T.jpg",
+    "sinopsis": "Un prototípico empleado de oficina decide un día rebelarse frente a su rutina y no va a trabajar porque tiene \"fiaca\". Su familia, sus amigos y compañeros intentan disuadirlo sin éxito al principio. Pero a medida que el tiempo pasa su situación se complica afectiva y económicamente. Estas circunstancias frustran su rebeldía.",
+    "director": "Fernando Ayala"
   },
   {
     "titulo": "The Last Supper",
     "anio": 1995,
     "genero": "comedia",
-    "tipo": "pelicula"
+    "tipo": "pelicula",
+    "tmdb_tipo": "movie",
+    "tmdb_id": 12520,
+    "titulo_original": null,
+    "poster_path": "/6vo8os9KeMdBE2SaTAUC52LbdUz.jpg",
+    "sinopsis": "A group of idealistic but frustrated liberals succumb to the temptation of murdering right-wing pundits for their political beliefs.",
+    "director": "Stacy Title"
   },
   {
     "titulo": "The Boat That Rocked",
     "anio": 2009,
     "genero": "comedia",
-    "tipo": "pelicula"
+    "tipo": "pelicula",
+    "tmdb_tipo": "movie",
+    "tmdb_id": 18947,
+    "titulo_original": null,
+    "poster_path": "/y9928GbEfXzGT0GhnOSBEEgDFTB.jpg",
+    "sinopsis": "Inglaterra, años 60. Narra la historia de Radio Rock, una emisora pirata. En 1966, la BBC sólo emitía dos horas de rock and roll a la semana. Pero la Radio Rock, que inundaba el país de rock y pop 24 horas al día, consiguió una audiencia de 25 millones de personas, más de la mitad de la población. Cuando Carl es expulsado del colegio, su madre lo manda a pasar una temporada con su padrino Quentin, que es el jefe de esa emisora pirata que emite desde un barco en el mar del Norte. Entre los extravagantes pinchadiscos destaca \"El Conde\", un auténtico ídolo de las ondas. Lo secundan Dave, inteligente y sarcástico, Simon, un chico amable que busca el amor verdadero, el enigmático y apuesto Midnight Mark entre otros.",
+    "director": "Richard Curtis"
   },
   {
     "titulo": "Las trillizas de Belleville",
     "anio": 2003,
     "genero": "comedia",
-    "tipo": "pelicula"
+    "tipo": "pelicula",
+    "tmdb_tipo": "movie",
+    "tmdb_id": 9662,
+    "titulo_original": "Les Triplettes de Belleville",
+    "poster_path": "/fedxSLmZ7wmUiJBCEyvXZACZpLD.jpg",
+    "sinopsis": "Madame Souza y su perro Bruno forman equipo con las trillizas de Belleville para encontrar a su nieto, secuestrado durante el tour de Francia.",
+    "director": "Sylvain Chomet"
   },
   {
     "titulo": "Unsere Mütter, unsere Väter",
     "anio": 2013,
     "genero": "serie",
-    "tipo": "serie"
+    "tipo": "serie",
+    "tmdb_tipo": "tv",
+    "tmdb_id": 46849,
+    "titulo_original": null,
+    "poster_path": "/gdfRL7j9tBQT4KQUv4xF3QHrJG4.jpg",
+    "sinopsis": "Calificada como la «Hermanos de sangre» alemana. Berlín, verano de 1941. En plena guerra, cinco jóvenes amigos alemanes se reúnen para despedirse antes de marcharse a sus respectivos destinos: dos hermanos, Wilhelm (Volker Bruch) y Friedhelm (Tom Schilling), partirán al frente del este. Charlotte ‘Charly’ (Miriam Stein), enamorada de Wilhelm, desea también servir a su patria como enfermera en el frente. Mientras la brillante Greta (Katherina Schüttler) sueña con convertirse en cantante, su novio Viktor (Ludwig Trepte), que es judío, trabaja como sastre con su padre. Los cinco amigos prometen volver a encontrarse después de la contienda, que calculan que será breve. Pero la guerra, que transformará radicalmente a toda Europa, también los cambiará a ellos para siempre.",
+    "director": "Philipp Kadelbach"
   },
   {
     "titulo": "La Casa De Los Espíritus",
     "anio": 2026,
     "genero": "serie",
-    "tipo": "serie"
+    "tipo": "serie",
+    "tmdb_tipo": "tv",
+    "tmdb_id": 259702,
+    "titulo_original": "The House of the Spirits",
+    "poster_path": "/jj0XnxksBKyQ7zQp7O4TFw5PIVx.jpg",
+    "sinopsis": "Una saga familiar magnífica que narra la épica historia de una familia orgullosa y apasionada, amores secretos y una revolución sangrienta. Las pasiones, las luchas y los secretos de la familia Trueba abarcan un siglo de cambios sociales violentos, culminando en una crisis que lanzan al orgulloso y tiránico patriarca y a su querida nieta en direcciones opuestas.",
+    "director": "Francisca Alegría, Fernanda Urrejola"
   },
   {
     "titulo": "Los Simpson, T03E01",
@@ -276,7 +526,13 @@
     "tipo": "episodio",
     "serie": "Los Simpson",
     "temporada": 3,
-    "episodio": 1
+    "episodio": 1,
+    "tmdb_tipo": "tv",
+    "tmdb_id": 456,
+    "titulo_original": "Papá está loco",
+    "poster_path": "/jQ6CWtYt9S6z4K9CNQtlmMiVC66.jpg",
+    "sinopsis": "Bart mezcla su gorra roja de la suerte con las camisas blancas de Homero y se tiñen de rosa. En la Central, Homero es tomado por un loco y es ingresado en un manicomio, donde conoce a un hombre que cree ser Michael Jackson. Mientras, Lisa intenta que Bart le regale algo por su octavo cumpleaños.",
+    "director": "Rich Moore"
   },
   {
     "titulo": "Rick y Morty, T03E07",
@@ -285,6 +541,12 @@
     "tipo": "episodio",
     "serie": "Rick y Morty",
     "temporada": 3,
-    "episodio": 7
+    "episodio": 7,
+    "tmdb_tipo": "tv",
+    "tmdb_id": 60625,
+    "titulo_original": "Cuentos de la Ciudadela",
+    "poster_path": "/7UFRlzHAWZDhZ062uJ4NvsMNzFf.jpg",
+    "sinopsis": "Rick y Morty se topan con Rick y Mory de la Ciudadela de Ricks antes de dirigirse a una aventura increíble en Atlantis.",
+    "director": "Dominic Polcino"
   }
 ]

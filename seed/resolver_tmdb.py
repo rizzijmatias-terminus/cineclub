@@ -100,52 +100,75 @@ def detalle(camino):
     return d
 
 
-def resolver(t):
-    """Devuelve (campos, candidatos). Si campos es None, hay que revisar."""
+def enriquecer(t):
+    """Completa los campos a partir de tmdb_tipo/tmdb_id ya definidos.
+
+    No busca: usa el id que esté puesto, venga del resolvedor o de una
+    corrección a mano. Por eso arreglar un id a mano y volver a correr alcanza
+    para completar el resto.
+    """
+    tipo, tid = t["tmdb_tipo"], t["tmdb_id"]
+
     if t["tipo"] == "episodio":
-        serie, temporada, episodio = t["serie"], t["temporada"], t["episodio"]
-        ranking, campo_fecha, campos = buscar("tv", serie, t["anio"])
+        ep = detalle(f"/tv/{tid}/season/{t['temporada']}/episode/{t['episodio']}")
+        serie = pedir(f"/tv/{tid}", language=IDIOMA)
+        directores = [c["name"] for c in ep.get("crew", []) if c.get("job") == "Director"]
+        return {
+            "titulo_original": ep.get("name"),
+            "poster_path": ep.get("still_path") or serie.get("poster_path"),
+            "sinopsis": ep.get("overview") or None,
+            "director": ", ".join(dict.fromkeys(directores)) or None,
+            "_dice": f"{serie.get('name')} T{t['temporada']}E{t['episodio']}: {ep.get('name')}",
+        }
+
+    d = detalle(f"/{tipo}/{tid}")
+    if tipo == "movie":
+        director = director_de_pelicula(tid)
+        original = d.get("original_title")
+        nombre, fecha = d.get("title"), d.get("release_date")
+    else:
+        director = ", ".join(p["name"] for p in d.get("created_by", [])) or None
+        original = d.get("original_name")
+        nombre, fecha = d.get("name"), d.get("first_air_date")
+
+    return {
+        "titulo_original": original if normalizar(original) != normalizar(t["titulo"]) else None,
+        "poster_path": d.get("poster_path") or d.get("_poster_en"),
+        "sinopsis": d.get("overview") or None,
+        "director": director,
+        "_dice": f"{nombre} ({(fecha or '????')[:4]})",
+    }
+
+
+def identificar(t):
+    """Busca en TMDB. Devuelve (identificacion, candidatos).
+
+    Sólo identifica: tmdb_tipo y tmdb_id. Los demás campos los completa
+    enriquecer(), para que arreglar un id a mano y volver a correr alcance.
+    Si identificacion es None, no hubo confianza suficiente y hay que elegir
+    a mano entre los candidatos.
+    """
+    if t["tipo"] == "episodio":
+        # el id que se guarda es el de la SERIE; temporada y episodio lo acotan
+        ranking, _, _ = buscar("tv", t["serie"], t["anio"])
         if not ranking or ranking[0]["_puntaje"] < 60:
             return None, ranking[:4]
         tv = ranking[0]
         try:
-            ep = detalle(f"/tv/{tv['id']}/season/{temporada}/episode/{episodio}")
+            detalle(f"/tv/{tv['id']}/season/{t['temporada']}/episode/{t['episodio']}")
         except Exception as e:
             return None, [{"error": f"episodio inexistente en TMDB: {e}"}] + ranking[:3]
-        directores = [c["name"] for c in ep.get("crew", []) if c.get("job") == "Director"]
-        return {
-            "tmdb_tipo": "tv",
-            "tmdb_id": tv["id"],
-            "titulo_original": ep.get("name"),
-            "poster_path": ep.get("still_path") or tv.get("poster_path"),
-            "sinopsis": ep.get("overview") or None,
-            "director": ", ".join(dict.fromkeys(directores)) or None,
-        }, None
+        return {"tmdb_tipo": "tv", "tmdb_id": tv["id"]}, None
 
     tipo_tmdb = "movie" if t["tipo"] == "pelicula" else "tv"
-    ranking, campo_fecha, campos = buscar(tipo_tmdb, t["titulo"], t["anio"])
+    ranking, _, _ = buscar(tipo_tmdb, t["titulo"], t["anio"])
     if not ranking:
         return None, []
     mejor = ranking[0]
     ambiguo = len(ranking) > 1 and ranking[1]["_puntaje"] == mejor["_puntaje"]
     if mejor["_puntaje"] < 90 or ambiguo:
         return None, ranking[:4]
-
-    d = detalle(f"/{tipo_tmdb}/{mejor['id']}")
-    if tipo_tmdb == "movie":
-        director = director_de_pelicula(mejor["id"])
-        original = d.get("original_title")
-    else:
-        director = ", ".join(p["name"] for p in d.get("created_by", [])) or None
-        original = d.get("original_name")
-    return {
-        "tmdb_tipo": tipo_tmdb,
-        "tmdb_id": mejor["id"],
-        "titulo_original": original if normalizar(original) != normalizar(t["titulo"]) else None,
-        "poster_path": d.get("poster_path") or d.get("_poster_en"),
-        "sinopsis": d.get("overview") or None,
-        "director": director,
-    }, None
+    return {"tmdb_tipo": tipo_tmdb, "tmdb_id": mejor["id"]}, None
 
 
 def resumen_candidato(c, tipo):
@@ -163,38 +186,60 @@ def main():
     forzar = "--forzar" in sys.argv
     titulos = json.load(open(RUTA, encoding="utf-8"))
 
-    resueltos = pendientes = 0
+    identificados = completados = pendientes = 0
     for t in titulos:
-        if t.get("tmdb_id") and not forzar:
+        ya_completo = t.get("tmdb_id") and t.get("poster_path")
+        if ya_completo and not forzar:
             continue
+
+        # 1. identificar, si todavía no tiene id
+        if not t.get("tmdb_id") or forzar:
+            try:
+                ident, candidatos = identificar(t)
+            except Exception as e:
+                ident, candidatos = None, [{"error": str(e)}]
+            if not ident:
+                tipo = "movie" if t["tipo"] == "pelicula" else "tv"
+                t["revisar"] = True
+                t["candidatos"] = [resumen_candidato(c, tipo) for c in (candidatos or [])]
+                pendientes += 1
+                print(f"  ??   {t['titulo']} ({t['anio']})")
+                for linea in t["candidatos"]:
+                    print(f"         {linea}")
+                time.sleep(0.15)
+                continue
+            t.update(ident)
+            identificados += 1
+
+        # 2. enriquecer, con el id que haya (del buscador o puesto a mano)
         try:
-            campos, candidatos = resolver(t)
+            campos = enriquecer(t)
         except Exception as e:
-            campos, candidatos = None, [{"error": str(e)}]
-        if campos:
-            t.update(campos)
-            t.pop("revisar", None)
-            t.pop("candidatos", None)
-            resueltos += 1
-            print(f"  ok   {t['titulo']} ({t['anio']}) → {campos['tmdb_tipo']}/{campos['tmdb_id']}")
-        else:
-            tipo = "movie" if t["tipo"] == "pelicula" else "tv"
-            t["revisar"] = True
-            t["candidatos"] = [resumen_candidato(c, tipo) for c in (candidatos or [])]
-            pendientes += 1
-            print(f"  ??   {t['titulo']} ({t['anio']})")
-            for linea in t["candidatos"]:
-                print(f"         {linea}")
+            print(f"  ✗    {t['titulo']} ({t['anio']}) — falló al enriquecer: {e}")
+            time.sleep(0.15)
+            continue
+        dice = campos.pop("_dice", "")
+        t.update(campos)
+        t.pop("revisar", None)
+        t.pop("candidatos", None)
+        completados += 1
+        print(f"  ok   {t['titulo']} ({t['anio']})")
+        print(f"         TMDB {t['tmdb_tipo']}/{t['tmdb_id']} dice: {dice}")
+        if t.get("director"):
+            print(f"         dirección: {t['director']}")
         time.sleep(0.15)
 
     with open(RUTA, "w", encoding="utf-8") as fh:
         json.dump(titulos, fh, ensure_ascii=False, indent=2)
         fh.write("\n")
 
-    print(f"\n{resueltos} resueltos, {pendientes} a revisar a mano.")
+    print(f"\n{identificados} identificados, {completados} completados, "
+          f"{pendientes} a revisar a mano.")
+    print("Revisá la línea 'TMDB dice' de cada uno: si no coincide con la "
+          "película que tenías en mente, el id está mal.")
     if pendientes:
-        print("Editá seed/titulos.json: poné tmdb_tipo y tmdb_id del candidato correcto,\n"
-              "borrá 'revisar' y 'candidatos', y volvé a correr para completar el resto.")
+        print("\nPara los pendientes: poné tmdb_tipo y tmdb_id del candidato correcto\n"
+              "en seed/titulos.json y volvé a correr — completa el resto solo.")
 
 
 if __name__ == "__main__":

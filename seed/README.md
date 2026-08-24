@@ -32,8 +32,25 @@ python3 seed/resolver_tmdb.py
 ```
 
 Completa `tmdb_tipo`, `tmdb_id`, `titulo_original`, `poster_path`, `sinopsis` y
-`director`. Es **idempotente**: sólo toca los que no tienen `tmdb_id`, así que se
+`director`. Es **idempotente**: saltea los que ya están completos, así que se
 puede correr las veces que haga falta.
+
+El trabajo está partido en dos, y eso importa para las correcciones a mano:
+
+- `identificar()` **busca** y decide qué `tmdb_id` corresponde.
+- `enriquecer()` **completa el resto de los campos a partir del id que haya**,
+  venga del buscador o lo hayas puesto vos.
+
+Por eso corregir un id a mano y volver a correr alcanza para que se complete
+solo. Cada uno imprime lo que TMDB dice que es ese id:
+
+```
+  ok   Dersu Uzala (1975)
+         TMDB movie/9764 dice: Dersu Uzala (1975)
+         dirección: Akira Kurosawa
+```
+
+**Revisá esa línea**: es la forma de detectar un id que apunta a otra película.
 
 Lo que no puede resolver con confianza **no lo adivina**: lo marca con
 `"revisar": true` y una lista de candidatos con su puntaje.
