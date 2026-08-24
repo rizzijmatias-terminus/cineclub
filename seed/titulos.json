@@ -29,7 +29,11 @@
     "genero": "drama",
     "tipo": "pelicula",
     "tmdb_tipo": "movie",
-    "tmdb_id": 53197
+    "tmdb_id": 53197,
+    "titulo_original": "Le fond de l'air est rouge",
+    "poster_path": "/ybD3SouOXyOLxkCQKzQmxYc0okC.jpg",
+    "sinopsis": "Chris Marker’s A Grin Without a Cat is an epic political essay tracing the rise and decline of the global left from the 1960s to the 1970s. Through archival footage and commentary, the film examines revolutionary movements in France, Latin America, and beyond, reflecting on the ideals, failures, and fading hopes of a generation.",
+    "director": "Chris Marker"
   },
   {
     "titulo": "Where Is the Friend’s House?",
@@ -37,7 +41,11 @@
     "genero": "drama",
     "tipo": "pelicula",
     "tmdb_tipo": "movie",
-    "tmdb_id": 49964
+    "tmdb_id": 49964,
+    "titulo_original": "خانه‌ی دوست کجاست؟",
+    "poster_path": "/yFdk2YnzSfYtcGimT95Bhm0CN1n.jpg",
+    "sinopsis": "En la escuela del pueblo de Koker, al norte de Irán, Mohamed no ha hecho los ejercicios en el cuaderno, y el profesor le amenaza con expulsarle de la escuela si vuelve a repetir la misma falta. Esa misma tarde, su compañero Ahmed toma por equivocación el cuaderno de Mohamed; cuando se da cuenta, decide ir a buscar la casa de su amigo para devolvérselo.",
+    "director": "Abbas Kiarostami"
   },
   {
     "titulo": "The Time That Remains",
@@ -45,7 +53,11 @@
     "genero": "drama",
     "tipo": "pelicula",
     "tmdb_tipo": "movie",
-    "tmdb_id": 694314
+    "tmdb_id": 694314,
+    "titulo_original": null,
+    "poster_path": "/v5NTssVUP2e3lLNV6kvdtxp4JVf.jpg",
+    "sinopsis": "In this gothic melodrama, Joan Crawford and Bette Davis perpetually wake to find themselves haunted by their own apparitions and terrorized by markers of time. Isolated in their own screen space, each woman struggles to reclaim time from the gendered discourses of aging that conflates older women with a sense of expiration and invisibility.",
+    "director": "Soda Jerk"
   },
   {
     "titulo": "La batalla de Argel",
@@ -137,7 +149,11 @@
     "genero": "drama",
     "tipo": "pelicula",
     "tmdb_tipo": "movie",
-    "tmdb_id": 129112
+    "tmdb_id": 129112,
+    "titulo_original": "Das Mädchen Wadjda",
+    "poster_path": "/wpNxSP9Kf3RHegREDAbiuEajMR7.jpg",
+    "sinopsis": "Una decidida niña de 10 años quiere una bicicleta para ganarle a su amigo en una carrera, pero debe usar un poco de ingenio para conseguirla.",
+    "director": "Haifaa al-Mansour"
   },
   {
     "titulo": "Las tortugas también vuelan",
@@ -229,7 +245,11 @@
     "genero": "suspenso",
     "tipo": "pelicula",
     "tmdb_tipo": "movie",
-    "tmdb_id": 305603
+    "tmdb_id": 305603,
+    "titulo_original": null,
+    "poster_path": "/7921Yk4PvKH1gHSrCj9Q358YJT7.jpg",
+    "sinopsis": "Una mujer que no puede reconocer a su familia, se enfrenta a un pasado oscuro mientras intenta reconstruir su vida.",
+    "director": "Robert Michael Lewis"
   },
   {
     "titulo": "8mm",
@@ -273,7 +293,11 @@
     "genero": "terror",
     "tipo": "pelicula",
     "tmdb_tipo": "movie",
-    "tmdb_id": 1062722
+    "tmdb_id": 1062722,
+    "titulo_original": null,
+    "poster_path": "/hTj8x0ElKldJyAjTYvaqxkQNxxN.jpg",
+    "sinopsis": "El Dr. Victor Frankenstein, un científico brillante pero egoísta, da vida a una criatura en un monstruoso experimento que finalmente conduce a la ruina tanto del creador como de su trágica creación.",
+    "director": "Guillermo del Toro"
   },
   {
     "titulo": "Funny Games",
@@ -377,7 +401,11 @@
     "genero": "aventura",
     "tipo": "pelicula",
     "tmdb_tipo": "movie",
-    "tmdb_id": 9764
+    "tmdb_id": 9764,
+    "titulo_original": "Дерсу Узала",
+    "poster_path": "/b7mZ9IQYGAWjpLf81ULC9P1UtwX.jpg",
+    "sinopsis": "El capitán Vladimir Arseniev y su destacamento tienen que realizar unas prospecciones geológicas en los bosques de la taiga siberiana. La inmensidad del territorio y la dureza del clima hacen que se extravíe. Condenado a vagar por una tierra salvaje, Vladimir conoce a Dersu Uzala, un cazador nómada que conoce el territorio como la palma de su mano y sabe cómo afrontar las inclemencias del tiempo. Dersu enseñará a Vladimir a respetar la naturaleza y a convivir en plena armonía con ella, una lección que difícilmente olvidará el resto de su vida.",
+    "director": "Akira Kurosawa"
   },
   {
     "titulo": "Héroe",
