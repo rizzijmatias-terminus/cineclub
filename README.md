@@ -16,6 +16,7 @@ Telegram bot  ──escribe──▶  Postgres  ◀──lee/vota──  Mini Ap
   del grupo. No da de alta: un botón manda al bot por deep link.
 - **La identidad la da Telegram.** El backend verifica el `initData` por HMAC con el token del bot.
   Nadie crea una cuenta.
+- **Django sin DRF.** Tres vistas que devuelven JSON: la lista, el voto y el webhook del bot.
 
 ## Estado
 
@@ -31,8 +32,8 @@ Lo que sigue:
 
 ## Despliegue
 
-Dokku sobre `cineclub.tallertotal.org`. El bot usa long polling, así que no necesita nada entrante —
-el dominio lo necesitan sólo la Mini App y la API.
+Dokku sobre `cineclub.tallertotal.org`, un solo proceso web. El bot recibe los updates por
+**webhook**, así que es un endpoint más de la misma app: no hay proceso aparte que mantener vivo.
 
 > El servidor tiene la RAM justa y los builds de Dokku corren en el host. Usar
 > `dokku resource:limit` y evitar builds pesados.

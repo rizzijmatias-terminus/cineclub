@@ -82,6 +82,31 @@ versión útil, pero obliga a guardar la última visita de cada usuario.
 vuelve más prominente y arrastra el término buscado en el payload del deep link, porque es el momento
 de mayor intención de alta que va a tener la app.
 
+## Backend
+
+**Django sin DRF.**
+La sensación de que "Django es grande para esto" apunta a algo real, pero el bulto no es Django: es
+DRF. Serializers, viewsets, routers y permissions para dos endpoints es pura ceremonia. Sin DRF
+quedan las partes que sí se usan —ORM, migraciones, management commands y sobre todo **el admin**,
+que es un CRUD gratis para corregir datos de una lista curada sin construir pantallas— y la API son
+tres vistas devolviendo `JsonResponse`.
+
+Se evaluó FastAPI y era una elección sana: unos 60 MB menos de memoria, pero sin admin y con
+migraciones más artesanales. A esta escala la diferencia de peso no decide nada — con 5-10 usuarios
+el cuello de botella es el tiempo de quien lo mantiene, no la máquina. Se descartaron Go y Node: la
+ganancia es memoria que no hace falta y el costo es no acordarse cómo tocarlo en seis meses.
+
+**El bot recibe updates por webhook, no por long polling.**
+Al principio se había elegido long polling porque no requiere nada entrante. Pero el dominio con
+HTTPS existe igual para la Mini App, y con webhook el bot deja de ser un proceso corriendo para
+siempre y pasa a ser **un endpoint más de la misma app**: un contenedor en vez de dos. En una
+máquina con la RAM justa eso ahorra más que elegir el framework más liviano, y elimina un proceso
+que se puede colgar sin que nadie se entere.
+
+Contrapartida a tener presente: el endpoint queda expuesto a internet. Telegram permite mandar un
+`secret_token` en `setWebhook` que vuelve en la cabecera `X-Telegram-Bot-Api-Secret-Token`; hay que
+verificarlo o cualquiera puede postear updates falsos.
+
 ## Infraestructura
 
 **Postgres desde el arranque**, no Google Sheets. Se evaluó Sheets como almacenamiento —viable a esta
@@ -96,6 +121,6 @@ acoplamiento — el riesgo real de esa máquina son los builds, no el estado en 
 **Bot y API en el mismo servicio.** Comparten modelo de datos y token; separarlos a esta escala es
 trabajo sin beneficio.
 
-**El repo arranca en la cuenta de GitHub existente** y se transfiere a la cuenta nueva cuando exista.
-Los commits usan desde ya el mail de la cuenta futura: GitHub vincula por mail cuando ese mail se
-agrega a una cuenta, así que la atribución se corrige sola sin reescribir historia.
+**El repo vive en la cuenta nueva** (`rizzijmatias-terminus/cineclub`, privado), y se llega por el
+alias SSH `github-cineclub` — no por `github.com`, que resuelve con otra clave. Los commits usan
+`rizzijmatias@gmail.com` desde el primero, así que nunca hizo falta reescribir historia.
